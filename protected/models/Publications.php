@@ -133,4 +133,14 @@ class Publications extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        public function beforeSave ()
+        {
+        // convert to storage format
+        
+        //$this->publicdate = strtotime ($this->publicdate);
+        $this->publicdate = date('Y-m-d H:i:s',strtotime($this->publicdate));
+
+        return parent::beforeSave ();
+        }
 }

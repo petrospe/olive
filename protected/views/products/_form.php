@@ -88,23 +88,6 @@
 		<?php echo $form->error($model,'active'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'updated'); ?>
-		<?php $this->widget('zii.widgets.jui.CJuiDatePicker', array(
-                    'name'=>'updated',
-                    'attribute'=>'updated',
-                    'model'=>$model,
-                    'options'=>array(
-                        'dateFormat'=>'yy-mm-dd',
-                        'altFormat'=>'yy-mm-dd',
-                        'changeMonth'=>true,
-                        'changeYear'=>true,
-                        'appendText'=>'yyyy-mm-dd',
-                    ),
-                    )); ?>
-		<?php echo $form->error($model,'updated'); ?>
-	</div>
-
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>

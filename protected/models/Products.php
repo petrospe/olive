@@ -37,7 +37,7 @@ class Products extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('productype_id, title, titleSEO, description, updated', 'required'),
+			array('productype_id, title, titleSEO, description', 'required'),
 			array('id, atlantis_id, productype_id, parent_id, active', 'numerical', 'integerOnly'=>true),
 			array('title, title_en, titleSEO', 'length', 'max'=>255),
 			// The following rule is used by search().
@@ -139,4 +139,14 @@ class Products extends CActiveRecord
         {
             return CHtml::listData(Products::model() ->findAll(), 'id', 'title');
         }
+        
+        /* Update Modified, Created dates */
+	public function beforeSave() {
+	    if ($this->isNewRecord)
+	        $this->created = new CDbExpression('NOW()');
+	    else
+	        $this->updated = new CDbExpression('NOW()');
+	 
+	    return parent::beforeSave();
+	}
 }

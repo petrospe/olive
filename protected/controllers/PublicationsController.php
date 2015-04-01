@@ -71,10 +71,15 @@ class PublicationsController extends Controller
 		if(isset($_POST['Publications']))
 		{
 			$publications->attributes=$_POST['Publications'];
-                        $prices->attributes=$_POST['Prices'];
-                        $prices->product_id = $publications->product_id;
-                        $prices->save();
-			if($publications->save())
+                        if($publications->save())
+                        {
+                                 $prices->attributes=$_POST['Prices'];
+                                 if(($prices->individuals > 0))
+                            {
+                                 $prices->product_id = $publications->product_id;
+                                 $prices->save();
+                            }
+                        }
 				$this->redirect(array('view','id'=>$publications->id));
 		}
 
