@@ -107,9 +107,9 @@ class Products extends CActiveRecord
 		$criteria->compare('parent_id',$this->parent_id);
 		$criteria->compare('title',$this->title,true);
 		$criteria->compare('title_en',$this->title_en,true);
-		$criteria->compare('titleSEO',$this->titleSEO,true);
-		$criteria->compare('subtitle',$this->subtitle,true);
-		$criteria->compare('subtitle_en',$this->subtitle_en,true);
+		$criteria->compare('titleSEO',$this->titleSEO);
+		$criteria->compare('subtitle',$this->subtitle);
+		$criteria->compare('subtitle_en',$this->subtitle_en);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('description_en',$this->description_en,true);
 		$criteria->compare('active',$this->active);

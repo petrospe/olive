@@ -37,16 +37,17 @@ class Publications extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('product_id', 'required'),
+			array('product_id, publicdate', 'required'),
 			array('product_id, publication_series_id, pages, topSellers, inprint', 'numerical', 'integerOnly'=>true),
 			array('serial', 'length', 'max'=>20),
 			array('vol', 'length', 'max'=>6),
 			array('year', 'length', 'max'=>4),
 			array('dimensions', 'length', 'max'=>10),
-			array('image, abstract', 'length', 'max'=>50),
+			array('image, abstract, content', 'length', 'max'=>50),
+                        array('publicdate', 'type', 'type' => 'date', 'dateFormat' => 'yyyy-MM-dd'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, product_id, publication_series_id, serial, pages, vol, year, dimensions, image, abstract, content, topSellers, inprint, publicdate', 'safe', 'on'=>'search'),
+			array('id, product_id, publication_series_id, serial, year, dimensions, topSellers, inprint, publicdate', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -108,14 +109,14 @@ class Publications extends CActiveRecord
 		$criteria->compare('publication_series_id',$this->publication_series_id);
 		$criteria->compare('serial',$this->serial,true);
 		$criteria->compare('pages',$this->pages);
-		$criteria->compare('vol',$this->vol,true);
+		$criteria->compare('vol',$this->vol);
 		$criteria->compare('year',$this->year,true);
 		$criteria->compare('dimensions',$this->dimensions,true);
-		$criteria->compare('image',$this->image,true);
-		$criteria->compare('abstract',$this->abstract,true);
-		$criteria->compare('content',$this->content,true);
-		$criteria->compare('topSellers',$this->topSellers);
-		$criteria->compare('inprint',$this->inprint);
+		$criteria->compare('image',$this->image);
+		$criteria->compare('abstract',$this->abstract);
+		$criteria->compare('content',$this->content);
+		$criteria->compare('topSellers',$this->topSellers,true);
+		$criteria->compare('inprint',$this->inprint,true);
 		$criteria->compare('publicdate',$this->publicdate,true);
 
 		return new CActiveDataProvider($this, array(
@@ -133,14 +134,5 @@ class Publications extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-        
-        public function beforeSave ()
-        {
-        // convert to storage format
-        
-        //$this->publicdate = strtotime ($this->publicdate);
-        $this->publicdate = date('Y-m-d H:i:s',strtotime($this->publicdate));
 
-        return parent::beforeSave ();
-        }
 }
