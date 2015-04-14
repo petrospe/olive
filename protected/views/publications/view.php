@@ -37,3 +37,5 @@ $this->menu=array(
 		'publicdate',
 	),
 )); ?>
+
+<?php echo CHtml::Button('Back to Product',array('submit'=>array('products/view','id'=>$model->product_id))); ?>

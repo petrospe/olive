@@ -53,7 +53,8 @@ class Prices extends CActiveRecord
 			array('product_id, initialind, initialcom, ShowFrontPage', 'numerical', 'integerOnly'=>true),
 			array('individuals, companies, NoDiscountInd, NoDiscountCom, lawyers, practicingLawyers, laywerCompanies, NoDiscountLCom, newLawyers, NoDiscountNLaw, students, accountants, practicingAccountants, discountPercentage', 'numerical'),
 			array('discountTitle, discountTitle_en, discountCode, discountCode_en, discountLabel, discountLabel_en', 'length', 'max'=>255),
-			array('discountExpiration', 'safe'),
+			//array('discountExpiration', 'safe'),
+                        array('discountExpiration', 'type', 'type' => 'date', 'dateFormat' => 'yyyy-MM-dd'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, product_id, individuals, companies, initialind, initialcom, NoDiscountInd, NoDiscountCom, lawyers, practicingLawyers, laywerCompanies, NoDiscountLCom, newLawyers, NoDiscountNLaw, students, accountants, practicingAccountants, discountExpiration, discountTitle, discountTitle_en, discountCode, discountCode_en, discountPercentage, ShowFrontPage, discountLabel, discountLabel_en', 'safe', 'on'=>'search'),

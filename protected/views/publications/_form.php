@@ -17,89 +17,88 @@
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
-	<?php echo $form->errorSummary($publications); ?>
-        <?php echo $form->errorSummary($prices); ?>
+	<?php echo $form->errorSummary($model); ?>
         
         <?php $productid = Yii::app()->request->getQuery('product_id'); ?>
         
 	<div class="row">
-		<?php echo $form->labelEx($publications,'product_id'); ?>
-                <?php echo $form->textField($publications, 'product_id', array('readonly'=>true,'value'=>$productid)); ?>
-		<?php echo $form->error($publications,'product_id'); ?>
+		<?php echo $form->labelEx($model,'product_id'); ?>
+                <?php echo $form->textField($model, 'product_id', array('readonly'=>true,'value'=>$productid)); ?>
+		<?php echo $form->error($model,'product_id'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($publications,'publication_series_id'); ?>
-		<?php echo $form->dropDownList($publications,'publication_series_id', PublicationSeries::model() ->getTypeOptions(), array('empty'=>'--Select Series--')); ?>
-		<?php echo $form->error($publications,'publication_series_id'); ?>
+		<?php echo $form->labelEx($model,'publication_series_id'); ?>
+		<?php echo $form->dropDownList($model,'publication_series_id', PublicationSeries::model() ->getTypeOptions(), array('empty'=>'--Select Series--')); ?>
+		<?php echo $form->error($model,'publication_series_id'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($publications,'serial'); ?>
-		<?php echo $form->textField($publications,'serial',array('size'=>20,'maxlength'=>20)); ?>
-		<?php echo $form->error($publications,'serial'); ?>
+		<?php echo $form->labelEx($model,'serial'); ?>
+		<?php echo $form->textField($model,'serial',array('size'=>20,'maxlength'=>20)); ?>
+		<?php echo $form->error($model,'serial'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($publications,'pages'); ?>
-		<?php echo $form->textField($publications,'pages'); ?>
-		<?php echo $form->error($publications,'pages'); ?>
+		<?php echo $form->labelEx($model,'pages'); ?>
+		<?php echo $form->textField($model,'pages'); ?>
+		<?php echo $form->error($model,'pages'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($publications,'vol'); ?>
-		<?php echo $form->textField($publications,'vol',array('size'=>6,'maxlength'=>6)); ?>
-		<?php echo $form->error($publications,'vol'); ?>
+		<?php echo $form->labelEx($model,'vol'); ?>
+		<?php echo $form->textField($model,'vol',array('size'=>6,'maxlength'=>6)); ?>
+		<?php echo $form->error($model,'vol'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($publications,'year'); ?>
-		<?php echo $form->textField($publications,'year',array('size'=>4,'maxlength'=>4)); ?>
-		<?php echo $form->error($publications,'year'); ?>
+		<?php echo $form->labelEx($model,'year'); ?>
+		<?php echo $form->textField($model,'year',array('size'=>4,'maxlength'=>4)); ?>
+		<?php echo $form->error($model,'year'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($publications,'dimensions'); ?>
-		<?php echo $form->textField($publications,'dimensions',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($publications,'dimensions'); ?>
+		<?php echo $form->labelEx($model,'dimensions'); ?>
+		<?php echo $form->textField($model,'dimensions',array('size'=>10,'maxlength'=>10)); ?>
+		<?php echo $form->error($model,'dimensions'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($publications,'image'); ?>
-		<?php echo $form->textField($publications,'image',array('size'=>50,'maxlength'=>50)); ?>
-		<?php echo $form->error($publications,'image'); ?>
+		<?php echo $form->labelEx($model,'image'); ?>
+		<?php echo $form->textField($model,'image',array('size'=>50,'maxlength'=>50)); ?>
+		<?php echo $form->error($model,'image'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($publications,'abstract'); ?>
-		<?php echo $form->textField($publications,'abstract',array('size'=>50,'maxlength'=>50)); ?>
-		<?php echo $form->error($publications,'abstract'); ?>
+		<?php echo $form->labelEx($model,'abstract'); ?>
+		<?php echo $form->textField($model,'abstract',array('size'=>50,'maxlength'=>50)); ?>
+		<?php echo $form->error($model,'abstract'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($publications,'content'); ?>
-		<?php echo $form->textField($publications,'content',array('size'=>50, 'maxlength'=>50)); ?>
-		<?php echo $form->error($publications,'content'); ?>
+		<?php echo $form->labelEx($model,'content'); ?>
+		<?php echo $form->textField($model,'content',array('size'=>50, 'maxlength'=>50)); ?>
+		<?php echo $form->error($model,'content'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($publications,'topSellers'); ?>
-		<?php echo $form->textField($publications,'topSellers'); ?>
-		<?php echo $form->error($publications,'topSellers'); ?>
+		<?php echo $form->labelEx($model,'topSellers'); ?>
+		<?php echo $form->textField($model,'topSellers'); ?>
+		<?php echo $form->error($model,'topSellers'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($publications,'inprint'); ?>
-		<?php echo $form->textField($publications,'inprint'); ?>
-		<?php echo $form->error($publications,'inprint'); ?>
+		<?php echo $form->labelEx($model,'inprint'); ?>
+		<?php echo $form->textField($model,'inprint'); ?>
+		<?php echo $form->error($model,'inprint'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($publications,'publicdate'); ?>
+		<?php echo $form->labelEx($model,'publicdate'); ?>
 		<?php $this->widget('zii.widgets.jui.CJuiDatePicker', array(
                     'name'=>'publicdate',
                     'attribute'=>'publicdate',
-                    'model'=>$publications,
+                    'model'=>$model,
                     'options'=>array(
                         'dateFormat'=>'yy-mm-dd',
                         'altFormat'=>'yy-mm-dd',
@@ -108,35 +107,11 @@
                         'appendText'=>'yyyy-mm-dd',
                     ),
                     )); ?>
-		<?php echo $form->error($publications,'publicdate'); ?>
-	</div>
-        
-        <div class="row">
-		<?php echo $form->labelEx($prices,'individuals'); ?>
-		<?php echo $form->textField($prices,'individuals',array('size'=>4,'maxlength'=>10)); ?>
-		<?php echo $form->error($prices,'individuals'); ?>
-	</div>
-        
-        <div class="row">
-		<?php echo $form->labelEx($prices,'companies'); ?>
-		<?php echo $form->textField($prices,'companies',array('size'=>4,'maxlength'=>10)); ?>
-		<?php echo $form->error($prices,'companies'); ?>
-	</div>
-        
-        <div class="row">
-		<?php echo $form->labelEx($prices,'initialind'); ?>
-		<?php echo $form->textField($prices,'initialind',array('size'=>4,'maxlength'=>10)); ?>
-		<?php echo $form->error($prices,'initialind'); ?>
-	</div>
-        
-        <div class="row">
-		<?php echo $form->labelEx($prices,'initialcom'); ?>
-		<?php echo $form->textField($prices,'initialcom',array('size'=>4,'maxlength'=>10)); ?>
-		<?php echo $form->error($prices,'initialcom'); ?>
+		<?php echo $form->error($model,'publicdate'); ?>
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($publications->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

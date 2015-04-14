@@ -62,30 +62,20 @@ class PublicationsController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$publications=new Publications;
-                $prices=new Prices;
+		$model=new Publications;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['Publications']))
 		{
-			$publications->attributes=$_POST['Publications'];
-                        if($publications->save())
-                        {
-                                 $prices->attributes=$_POST['Prices'];
-                                 if(($prices->individuals > 0))
-                            {
-                                 $prices->product_id = $publications->product_id;
-                                 $prices->save();
-                            }
-                        }
-				$this->redirect(array('view','id'=>$publications->id));
+			$model->attributes=$_POST['Publications'];
+                        if($model->save())
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
-			'publications'=>$publications,
-                        'prices'=>$prices,
+			'model'=>$model,
 		));
 	}
 

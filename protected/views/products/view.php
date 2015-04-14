@@ -43,61 +43,141 @@ if ($model->productype_id==1 || $model->productype_id==2 || $model->productype_i
 
     $criteria = new CDbCriteria();
     $criteria->condition = 'product_id='.$model->id;
-    $childDataProvider = new CActiveDataProvider('Publications',array('criteria'=>$criteria));
+    $publicationsDataProvider = new CActiveDataProvider('Publications',array('criteria'=>$criteria));
+    $pricesDataProvider = new CActiveDataProvider('Prices',array('criteria'=>$criteria));
     
-    $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'publications-grid',
-        'summaryText'=>'<h1>Manage Publication #</h1>',
-	'dataProvider'=>$childDataProvider,
-	'columns'=>array(
-		'id',
-		/*'product_id',
-                array(
-                    'name'=>'publication_series_id',
-                    'type'=>'raw', 'value'=>'PublicationSeries::model()->findByPk($data->publication_series_id)->description',
+    if(!empty($publicationsDataProvider->itemCount))
+    {
+        $this->widget('zii.widgets.grid.CGridView', array(
+                'id'=>'publications-grid',
+                'summaryText'=>'<h1>Manage Publication #</h1>',
+                'dataProvider'=>$publicationsDataProvider,
+                'columns'=>array(
+                        'id',
+                        /*'product_id',
+                        array(
+                            'name'=>'publication_series_id',
+                            'type'=>'raw', 'value'=>'PublicationSeries::model()->findByPk($data->publication_series_id)->description',
+                                ),
+                        'publication_series_id',*/
+                        'serial',
+                        'pages',
+                        'vol',
+                        'year',
+                        'dimensions',
+                        'image',
+                        'abstract',
+                        'content',
+                        'topSellers',
+                        'inprint',
+                        'publicdate',
+                        array(
+                                'class'=>'CButtonColumn',
+                                'template' => '{view}{update}{delete}',
+                                'buttons' => array(
+                                            'view'=>array(
+                                                    'label'=> 'View',
+                                                    'options'=>array(
+                                                        'class'=>'view'
+                                                    ),
+                                                    'url'=>'Yii::app()->createUrl("publications/view", array("id"=>$data->id))'
+                                                ),
+                                            'update'=>array(
+                                                    'label'=> 'Update',
+                                                    'options'=>array(
+                                                        'class'=>'view'
+                                                    ),
+                                                    'url'=>'Yii::app()->createUrl("publications/update", array("id"=>$data->id))'
+                                                ),
+                                            'delete'=>array(
+                                                    'label'=> 'Delete',
+                                                    'options'=>array(
+                                                        'class'=>'delete'
+                                                    ),
+                                                    'url'=>'Yii::app()->createUrl("publications/delete", array("id"=>$data->id))'
+                                                ),
+                                            ),
                         ),
-                'publication_series_id',*/
-		'serial',
-		'pages',
-		'vol',
-		'year',
-		'dimensions',
-		'image',
-		'abstract',
-		'content',
-		'topSellers',
-		'inprint',
-		'publicdate',
-		array(
-			'class'=>'CButtonColumn',
-                                    'template' => '{view}{update}{delete}',
-                                    'buttons' => array(
-                                        'view'=>array(
-                                            'label'=> 'View',
-                                            'options'=>array(
-                                                'class'=>'view'
+                ),
+        ));
+    }
+    else 
+    {
+        echo CHtml::Button('Add Publication',array('submit'=>array('publications/create','product_id'=>$model->id)));
+    }
+   
+    if(!empty($pricesDataProvider->itemCount))
+    {
+        $this->widget('zii.widgets.grid.CGridView', array(
+                'id'=>'prices-grid',
+                'summaryText'=>'<h1>Manage Prices #</h1>',
+                'dataProvider'=>$pricesDataProvider,
+                'columns'=>array(
+                        'id',
+                        /*array(
+                            'name'=>'product_id',
+                            'type'=>'raw', 'value'=>'Products::model()->findByPk($data->product_id)->title',
+                                ),
+                        'product_id',*/
+                        'individuals',
+                        'companies',
+                        'initialind',
+                        'initialcom',
+                        'NoDiscountInd',
+                        'NoDiscountCom',
+                        /*'lawyers',
+                        'practicingLawyers',
+                        'laywerCompanies',
+                        'NoDiscountLCom',
+                        'newLawyers',
+                        'NoDiscountNLaw',*/
+                        'students',
+                        /*'accountants',
+                        'practicingAccountants',
+                        'discountExpiration',
+                        'discountTitle',
+                        'discountTitle_en',
+                        'discountCode',
+                        'discountCode_en',
+                        'discountPercentage',
+                        'ShowFrontPage',
+                        'discountLabel',
+                        'discountLabel_en',
+                        */
+                        array(
+                                'class'=>'CButtonColumn',
+                                'template' => '{view}{update}{delete}',
+                                'buttons' => array(
+                                            'view'=>array(
+                                                    'label'=> 'View',
+                                                    'options'=>array(
+                                                        'class'=>'view'
+                                                        ),
+                                                    'url'=>'Yii::app()->createUrl("prices/view", array("id"=>$data->id))'
+                                                    ),
+                                            'update'=>array(
+                                                    'label'=> 'Update',
+                                                    'options'=>array(
+                                                        'class'=>'view'
+                                                    ),
+                                                    'url'=>'Yii::app()->createUrl("prices/update", array("id"=>$data->id))'
+                                                ),
+                                            'delete'=>array(
+                                                    'label'=> 'Delete',
+                                                    'options'=>array(
+                                                        'class'=>'delete'
+                                                    ),
+                                                    'url'=>'Yii::app()->createUrl("prices/delete", array("id"=>$data->id))'
+                                                ),
                                             ),
-                                            'url'=>'Yii::app()->createUrl("publications/view", array("id"=>$data->id))'
-                                        ),
-                                        'update'=>array(
-                                            'label'=> 'Update',
-                                            'options'=>array(
-                                                'class'=>'view'
-                                            ),
-                                            'url'=>'Yii::app()->createUrl("publications/update", array("id"=>$data->id))'
-                                        ),
-                                        'delete'=>array(
-                                            'label'=> 'Delete',
-                                            'options'=>array(
-                                                'class'=>'delete'
-                                            ),
-                                            'url'=>'Yii::app()->createUrl("publications/delete", array("id"=>$data->id))'
-                                        ),
-                                    ),
-		),
-	),
-));
-echo CHtml::Button('Add Publication',array('submit'=>array('publications/create','product_id'=>$model->id)));
+                        ),
+                ),
+        ));
+    }
+    else 
+    {
+    echo CHtml::Button('Add Price',array('submit'=>array('prices/create','product_id'=>$model->id)));
+    }
 endif;
 
 if ($model->productype_id==4 || $model->productype_id==5 || $model->productype_id==6):
