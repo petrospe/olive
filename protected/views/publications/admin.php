@@ -46,21 +46,23 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'product_id',
+                array(
+                    'name'=>'product_id',
+                    'type'=>'raw', 'value'=>'Products::model()->findByPk($data->product_id)->title',
+                        ),
+		/*'product_id',
 		'publication_series_id',
 		'serial',
 		'pages',
 		'vol',
-		/*
 		'year',
 		'dimensions',
 		'image',
 		'abstract',
-		'content',
+		'content',*/
 		'topSellers',
 		'inprint',
 		'publicdate',
-		*/
 		array(
 			'class'=>'CButtonColumn',
 		),
