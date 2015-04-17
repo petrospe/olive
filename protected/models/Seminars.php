@@ -31,10 +31,11 @@ class Seminars extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, product_id, startdate, duration, publicdate, demovideo', 'required'),
-			array('id, product_id', 'numerical', 'integerOnly'=>true),
+			array('product_id, startdate, duration, publicdate', 'required'),
+			array('product_id', 'numerical', 'integerOnly'=>true),
 			array('startdate, demovideo', 'length', 'max'=>50),
 			array('duration', 'length', 'max'=>20),
+                        array('publicdate', 'type', 'type' => 'date', 'dateFormat' => 'yyyy-MM-dd'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, product_id, startdate, duration, publicdate, demovideo', 'safe', 'on'=>'search'),

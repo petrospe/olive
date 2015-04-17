@@ -18,10 +18,12 @@
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
+        
+        <?php $productid = Yii::app()->request->getQuery('product_id'); ?>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'product_id'); ?>
-		<?php echo $form->textField($model,'product_id'); ?>
+		<?php echo $form->textField($model,'product_id', array('readonly'=>true,'value'=>$productid)); ?>
 		<?php echo $form->error($model,'product_id'); ?>
 	</div>
 
@@ -39,7 +41,18 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'publicdate'); ?>
-		<?php echo $form->textField($model,'publicdate'); ?>
+		<?php $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+                    'name'=>'publicdate',
+                    'attribute'=>'publicdate',
+                    'model'=>$model,
+                    'options'=>array(
+                        'dateFormat'=>'yy-mm-dd',
+                        'altFormat'=>'yy-mm-dd',
+                        'changeMonth'=>true,
+                        'changeYear'=>true,
+                        'appendText'=>'yyyy-mm-dd',
+                    ),
+                    )); ?>
 		<?php echo $form->error($model,'publicdate'); ?>
 	</div>
 

@@ -5815,3 +5815,12 @@ REQUEST_URI=/olive/index.php?r=prices/update&id=1286
 in /var/www/olive/protected/views/prices/_form.php (26)
 in /var/www/olive/protected/views/prices/update.php (21)
 in /var/www/olive/protected/controllers/PricesController.php (103)
+2015/04/17 12:02:28 [warning] [application] Failed to set unsafe attribute "subtitle" of "Products".
+in /var/www/olive/protected/controllers/ProductsController.php (72)
+in /var/www/olive/index.php (13)
+2015/04/17 12:02:28 [warning] [application] Failed to set unsafe attribute "subtitle_en" of "Products".
+in /var/www/olive/protected/controllers/ProductsController.php (72)
+in /var/www/olive/index.php (13)
+2015/04/17 12:02:28 [warning] [application] Failed to set unsafe attribute "description_en" of "Products".
+in /var/www/olive/protected/controllers/ProductsController.php (72)
+in /var/www/olive/index.php (13)
