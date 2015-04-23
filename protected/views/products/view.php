@@ -45,6 +45,7 @@ if ($model->productype_id==1 || $model->productype_id==2 || $model->productype_i
     $criteria->condition = 'product_id='.$model->id;
     $publicationsDataProvider = new CActiveDataProvider('Publications',array('criteria'=>$criteria));
     $pricesDataProvider = new CActiveDataProvider('Prices',array('criteria'=>$criteria));
+    $productSitesDataProvider = new CActiveDataProvider('ProductSites',array('criteria'=>$criteria));
     
     if(!empty($publicationsDataProvider->itemCount))
     {
@@ -177,6 +178,52 @@ if ($model->productype_id==1 || $model->productype_id==2 || $model->productype_i
     else 
     {
     echo CHtml::Button('Add Price',array('submit'=>array('prices/create','product_id'=>$model->id)));
+    }
+
+    if(!empty($productSitesDataProvider->itemCount))
+    {
+            $this->widget('zii.widgets.grid.CGridView', array(
+                'id'=>'product-sites-grid',
+                'dataProvider'=>$productSitesDataProvider,
+                'columns'=>array(
+                        array(
+                                    'name'=>'site_id',
+                                    'type'=>'raw', 'value'=>'Sites::model()->findByPk($data->site_id)->description',
+                                        ),
+                        /*'site_id',*/
+                        array(
+                                'class'=>'CButtonColumn',
+                                'template' => '{view}{update}{delete}',
+                                'buttons' => array(
+                                            'view'=>array(
+                                                    'label'=> 'View',
+                                                    'options'=>array(
+                                                        'class'=>'view'
+                                                        ),
+                                                    'url'=>'Yii::app()->createUrl("productSites/view", array("id"=>$data->id))'
+                                                    ),
+                                            'update'=>array(
+                                                    'label'=> 'Update',
+                                                    'options'=>array(
+                                                        'class'=>'view'
+                                                    ),
+                                                    'url'=>'Yii::app()->createUrl("productSites/update", array("id"=>$data->id))'
+                                                ),
+                                            'delete'=>array(
+                                                    'label'=> 'Delete',
+                                                    'options'=>array(
+                                                        'class'=>'delete'
+                                                    ),
+                                                    'url'=>'Yii::app()->createUrl("productSites/delete", array("id"=>$data->id))'
+                                                ),
+                                            ),
+                        ),
+                ),
+        ));
+    }
+    if($productSitesDataProvider->itemCount < 2)
+    {
+    echo CHtml::Button('Add Site',array('submit'=>array('productSites/create','product_id'=>$model->id)));
     }
 endif;
 
