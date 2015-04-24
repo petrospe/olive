@@ -184,6 +184,7 @@ if ($model->productype_id==1 || $model->productype_id==2 || $model->productype_i
     {
             $this->widget('zii.widgets.grid.CGridView', array(
                 'id'=>'product-sites-grid',
+                'summaryText'=>'<h1>Manage Sites #</h1>',
                 'dataProvider'=>$productSitesDataProvider,
                 'columns'=>array(
                         array(

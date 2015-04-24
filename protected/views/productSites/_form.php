@@ -1,4 +1,4 @@
-<?php
+z<?php
 /* @var $this ProductSitesController */
 /* @var $model ProductSites */
 /* @var $form CActiveForm */
