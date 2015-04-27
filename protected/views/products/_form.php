@@ -21,7 +21,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'atlantis_id'); ?>
-		<?php echo $form->textField($model,'atlantis_id'); ?>
+		<?php echo $form->textField($model,'atlantis_id', array('placeholder'=>'5-digit code')); ?>
 		<?php echo $form->error($model,'atlantis_id'); ?>
 	</div>
 
@@ -42,19 +42,19 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'title'); ?>
-		<?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>255, 'placeholder'=>'Use capitals')); ?>
 		<?php echo $form->error($model,'title'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'title_en'); ?>
-		<?php echo $form->textField($model,'title_en',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'title_en',array('size'=>60,'maxlength'=>255, 'placeholder'=>'Use capitals')); ?>
 		<?php echo $form->error($model,'title_en'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'titleSEO'); ?>
-		<?php echo $form->textField($model,'titleSEO',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'titleSEO',array('size'=>60,'maxlength'=>255, 'placeholder'=>'ΕΝΑ-ΝΕΟ-ΒΙΒΛΙΟ')); ?>
 		<?php echo $form->error($model,'titleSEO'); ?>
 	</div>
 

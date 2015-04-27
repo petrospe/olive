@@ -29,13 +29,13 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'startdate'); ?>
-		<?php echo $form->textField($model,'startdate',array('size'=>50,'maxlength'=>50)); ?>
+		<?php echo $form->textField($model,'startdate',array('size'=>50,'maxlength'=>50, 'placeholder'=>'17 Απριλίου 2015')); ?>
 		<?php echo $form->error($model,'startdate'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'duration'); ?>
-		<?php echo $form->textField($model,'duration',array('size'=>20,'maxlength'=>20)); ?>
+		<?php echo $form->textField($model,'duration',array('size'=>20,'maxlength'=>20, 'placeholder'=>'3 ώρες')); ?>
 		<?php echo $form->error($model,'duration'); ?>
 	</div>
 
@@ -58,7 +58,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'demovideo'); ?>
-		<?php echo $form->textField($model,'demovideo',array('size'=>50,'maxlength'=>50)); ?>
+		<?php echo $form->textField($model,'demovideo',array('size'=>50,'maxlength'=>50, 'placeholder'=>'Youtube code or nothing')); ?>
 		<?php echo $form->error($model,'demovideo'); ?>
 	</div>
 
