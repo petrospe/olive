@@ -46,6 +46,7 @@ if ($model->productype_id==1 || $model->productype_id==2 || $model->productype_i
     $publicationsDataProvider = new CActiveDataProvider('Publications',array('criteria'=>$criteria));
     $pricesDataProvider = new CActiveDataProvider('Prices',array('criteria'=>$criteria));
     $productSitesDataProvider = new CActiveDataProvider('ProductSites',array('criteria'=>$criteria));
+    $productAssociatesDataProvider = new CActiveDataProvider('ProductAssociates',array('criteria'=>$criteria));
     
     if(!empty($publicationsDataProvider->itemCount))
     {
@@ -225,6 +226,61 @@ if ($model->productype_id==1 || $model->productype_id==2 || $model->productype_i
     if($productSitesDataProvider->itemCount < 2)
     {
     echo CHtml::Button('Add Site',array('submit'=>array('productSites/create','product_id'=>$model->id)));
+    }
+
+    if(!empty($productAssociatesDataProvider->itemCount))
+    {
+            $this->widget('zii.widgets.grid.CGridView', array(
+                'id'=>'product-associates-grid',
+                'summaryText'=>'<h1>Manage Associates #</h1>',
+                'dataProvider'=>$productAssociatesDataProvider,
+                'columns'=>array(
+                        array(
+                                    'name'=>'first_name',
+                                    'type'=>'raw', 'value'=>'Associates::model()->findByPk($data->associate_id)->first_name',
+                                        ),
+                        array(
+                                    'name'=>'last_name',
+                                    'type'=>'raw', 'value'=>'Associates::model()->findByPk($data->associate_id)->last_name',
+                                        ),
+                        array(
+                                    'name'=>'attribute_id',
+                                    'type'=>'raw', 'value'=>'Attributes::model()->findByPk($data->attribute_id)->description',
+                                        ),
+                        'ordering',
+                        /*'site_id',*/
+                        array(
+                                'class'=>'CButtonColumn',
+                                'template' => '{view}{update}{delete}',
+                                'buttons' => array(
+                                            'view'=>array(
+                                                    'label'=> 'View',
+                                                    'options'=>array(
+                                                        'class'=>'view'
+                                                        ),
+                                                    'url'=>'Yii::app()->createUrl("productAssociates/view", array("id"=>$data->id))'
+                                                    ),
+                                            'update'=>array(
+                                                    'label'=> 'Update',
+                                                    'options'=>array(
+                                                        'class'=>'view'
+                                                    ),
+                                                    'url'=>'Yii::app()->createUrl("productAssociates/update", array("id"=>$data->id))'
+                                                ),
+                                            'delete'=>array(
+                                                    'label'=> 'Delete',
+                                                    'options'=>array(
+                                                        'class'=>'delete'
+                                                    ),
+                                                    'url'=>'Yii::app()->createUrl("productAssociates/delete", array("id"=>$data->id))'
+                                                ),
+                                            ),
+                        ),
+                ),
+        ));
+    }
+    {
+    echo CHtml::Button('Add Associate',array('submit'=>array('productAssociates/create','product_id'=>$model->id)));
     }
 endif;
 

@@ -18,22 +18,34 @@
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
+        
+        <?php $productid = Yii::app()->request->getQuery('product_id');
+
+                /*you can use here any find method you think 
+                proper to return your data from db*/
+                $associates = Associates::model()->findAll();
+                $attributes = Attributes::model()->findAll();
+
+                // format models resulting using listData     
+                $associates_list = CHtml::listData($associates, 'id', 'last_name');
+                $attributes_list = CHtml::listData($attributes, 'id', 'description');
+        ?>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'product_id'); ?>
-		<?php echo $form->textField($model,'product_id'); ?>
+		<?php echo $form->textField($model,'product_id', array('readonly'=>true,'value'=>$productid)); ?>
 		<?php echo $form->error($model,'product_id'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'associate_id'); ?>
-		<?php echo $form->textField($model,'associate_id'); ?>
+		<?php echo $form->dropDownList($model,'associate_id', $associates_list); ?>
 		<?php echo $form->error($model,'associate_id'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'attribute_id'); ?>
-		<?php echo $form->textField($model,'attribute_id'); ?>
+		<?php echo $form->dropDownList($model,'attribute_id', $attributes_list); ?>
 		<?php echo $form->error($model,'attribute_id'); ?>
 	</div>
 
