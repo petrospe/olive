@@ -23,11 +23,11 @@
 
                 /*you can use here any find method you think 
                 proper to return your data from db*/
-                $associates = Associates::model()->findAll();
+                $associates = Associates::model()->findAll(array('order' => 'last_name ASC'));
                 $attributes = Attributes::model()->findAll();
 
                 // format models resulting using listData     
-                $associates_list = CHtml::listData($associates, 'id', 'last_name');
+                $associates_list = CHtml::listData($associates, 'id', 'fullName');
                 $attributes_list = CHtml::listData($attributes, 'id', 'description');
         ?>
 

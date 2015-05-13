@@ -56,6 +56,7 @@ class Products extends CActiveRecord
 		return array(
                     'productypes' => array(self::BELONGS_TO, 'Productypes', 'productype_id'),
                     'publications' => array(self::HAS_MANY, 'Publications', 'product_id'),
+                    'seminars' => array(self::HAS_MANY, 'Seminars', 'product_id'),
                     'prices' => array(self::HAS_MANY, 'Prices', 'product_id'),
                     'productsites' => array(self::HAS_MANY, 'ProductSites', 'product_id'),
 		);

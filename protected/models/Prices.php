@@ -168,4 +168,11 @@ class Prices extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+        public function beforeSave() {
+            if ($this->isNewRecord)
+                $this->discountExpiration = new CDbExpression('NOW()');
+
+            return parent::beforeSave();
+        }
 }
