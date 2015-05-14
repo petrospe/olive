@@ -7709,3 +7709,33 @@ in /Library/WebServer/Documents/olive/index.php (13)
 2015/05/14 00:16:47 [warning] [application] Failed to set unsafe attribute "description_en" of "Products".
 in /Library/WebServer/Documents/olive/protected/controllers/ProductsController.php (72)
 in /Library/WebServer/Documents/olive/index.php (13)
+2015/05/14 23:28:54 [error] [exception.CException] exception 'CException' with message 'CAssetManager.basePath "/Library/WebServer/Documents/olive/assets" is invalid. Please make sure the directory exists and is writable by the Web server process.' in /Library/WebServer/yii-master/framework/web/CAssetManager.php:138
+Stack trace:
+#0 /Library/WebServer/yii-master/framework/web/CAssetManager.php(123): CAssetManager->setBasePath('/Library/WebSer...')
+#1 /Library/WebServer/yii-master/framework/web/CAssetManager.php(217): CAssetManager->getBasePath()
+#2 /Library/WebServer/yii-master/framework/zii/widgets/CListView.php(217): CAssetManager->publish('/Library/WebSer...')
+#3 /Library/WebServer/yii-master/framework/web/CBaseController.php(147): CListView->init()
+#4 /Library/WebServer/yii-master/framework/web/CBaseController.php(180): CBaseController->createWidget('zii.widgets.CLi...', Array)
+#5 /Library/WebServer/Documents/olive/protected/views/products/index.php(20): CBaseController->widget('zii.widgets.CLi...', Array)
+#6 /Library/WebServer/yii-master/framework/web/CBaseController.php(126): require('/Library/WebSer...')
+#7 /Library/WebServer/yii-master/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Library/WebSer...', Array, true)
+#8 /Library/WebServer/yii-master/framework/web/CController.php(869): CBaseController->renderFile('/Library/WebSer...', Array, true)
+#9 /Library/WebServer/yii-master/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#10 /Library/WebServer/Documents/olive/protected/controllers/ProductsController.php(128): CController->render('index', Array)
+#11 /Library/WebServer/yii-master/framework/web/actions/CInlineAction.php(49): ProductsController->actionIndex()
+#12 /Library/WebServer/yii-master/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /Library/WebServer/yii-master/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 /Library/WebServer/yii-master/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#15 /Library/WebServer/yii-master/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 /Library/WebServer/yii-master/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 /Library/WebServer/yii-master/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 /Library/WebServer/yii-master/framework/web/CController.php(291): CFilterChain->run()
+#19 /Library/WebServer/yii-master/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /Library/WebServer/yii-master/framework/web/CWebApplication.php(282): CController->run('')
+#21 /Library/WebServer/yii-master/framework/web/CWebApplication.php(141): CWebApplication->runController('products')
+#22 /Library/WebServer/yii-master/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#23 /Library/WebServer/Documents/olive/index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/olive/index.php?r=products
+HTTP_REFERER=http://localhost/olive/index.php?r=site/index
+---
