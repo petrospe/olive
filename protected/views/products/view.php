@@ -48,6 +48,8 @@ $this->menu=array(
 if ($model->productype_id==1 || $model->productype_id==2 || $model->productype_id==3):
 
     $publicationsDataProvider = new CActiveDataProvider('Publications',array('criteria'=>$criteria));
+    $productCategoriesDataProvider = new CActiveDataProvider('ProductCategories',array('criteria'=>$criteria));
+    $productTagsDataProvider = new CActiveDataProvider('ProductTags',array('criteria'=>$criteria));
 
     if(!empty($publicationsDataProvider->itemCount))
     {
@@ -108,6 +110,101 @@ if ($model->productype_id==1 || $model->productype_id==2 || $model->productype_i
     {
         echo CHtml::Button('Add Publication',array('submit'=>array('publications/create','product_id'=>$model->id)));
     }
+    
+    if(!empty($productCategoriesDataProvider->ItemCount))
+    {
+            $this->widget('zii.widgets.grid.CGridView', array(
+                'id'=>'product-categories-grid',
+                'summaryText'=>'<h1>Manage Categories #</h1>',
+                'dataProvider'=>$productCategoriesDataProvider,
+                'columns'=>array(
+                        'category_id',
+                        array(
+                                    'name'=>'category_id',
+                                    'type'=>'raw', 'value'=>'Categories::model()->findByPk($data->category_id)->title',
+                                        ),
+                        /*'site_id',*/
+                        array(
+                                'class'=>'CButtonColumn',
+                                'template' => '{view}{update}{delete}',
+                                'buttons' => array(
+                                            'view'=>array(
+                                                    'label'=> 'View',
+                                                    'options'=>array(
+                                                        'class'=>'view'
+                                                        ),
+                                                    'url'=>'Yii::app()->createUrl("productCategories/view", array("id"=>$data->id))'
+                                                    ),
+                                            'update'=>array(
+                                                    'label'=> 'Update',
+                                                    'options'=>array(
+                                                        'class'=>'view'
+                                                    ),
+                                                    'url'=>'Yii::app()->createUrl("productCategories/update", array("id"=>$data->id))'
+                                                ),
+                                            'delete'=>array(
+                                                    'label'=> 'Delete',
+                                                    'options'=>array(
+                                                        'class'=>'delete'
+                                                    ),
+                                                    'url'=>'Yii::app()->createUrl("productCategories/delete", array("id"=>$data->id))'
+                                                ),
+                                            ),
+                        ),
+                ),
+        ));
+    }
+    {
+    echo CHtml::Button('Add Category',array('submit'=>array('productCategories/create','product_id'=>$model->id)));
+    }
+    
+    if(!empty($productTagsDataProvider->ItemCount))
+    {
+            $this->widget('zii.widgets.grid.CGridView', array(
+                'id'=>'product-tags-grid',
+                'summaryText'=>'<h1>Manage Tags #</h1>',
+                'dataProvider'=>$productTagsDataProvider,
+                'columns'=>array(
+                        'tag_id',
+                        array(
+                                    'name'=>'tag_id',
+                                    'type'=>'raw', 'value'=>'Tags::model()->findByPk($data->tag_id)->description',
+                                        ),
+                        /*'site_id',*/
+                        array(
+                                'class'=>'CButtonColumn',
+                                'template' => '{view}{update}{delete}',
+                                'buttons' => array(
+                                            'view'=>array(
+                                                    'label'=> 'View',
+                                                    'options'=>array(
+                                                        'class'=>'view'
+                                                        ),
+                                                    'url'=>'Yii::app()->createUrl("productTags/view", array("id"=>$data->id))'
+                                                    ),
+                                            'update'=>array(
+                                                    'label'=> 'Update',
+                                                    'options'=>array(
+                                                        'class'=>'view'
+                                                    ),
+                                                    'url'=>'Yii::app()->createUrl("productTags/update", array("id"=>$data->id))'
+                                                ),
+                                            'delete'=>array(
+                                                    'label'=> 'Delete',
+                                                    'options'=>array(
+                                                        'class'=>'delete'
+                                                    ),
+                                                    'url'=>'Yii::app()->createUrl("productTags/delete", array("id"=>$data->id))'
+                                                ),
+                                            ),
+                        ),
+                ),
+        ));
+    }
+    {
+    echo CHtml::Button('Add Tag',array('submit'=>array('productTags/create','product_id'=>$model->id)));
+    }
+    
     endif;
     
     if ($model->productype_id==4 || $model->productype_id==5 || $model->productype_id==6):

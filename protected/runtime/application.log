@@ -7739,3 +7739,33 @@ Stack trace:
 REQUEST_URI=/olive/index.php?r=products
 HTTP_REFERER=http://localhost/olive/index.php?r=site/index
 ---
+2015/05/15 23:52:47 [error] [exception.CException] exception 'CException' with message 'CActiveForm and its behaviors do not have a method or closure named "textDropDownList".' in /Library/WebServer/yii-master/framework/base/CComponent.php:266
+Stack trace:
+#0 /Library/WebServer/Documents/olive/protected/views/productTags/_form.php(40): CComponent->__call('textDropDownLis...', Array)
+#1 /Library/WebServer/Documents/olive/protected/views/productTags/_form.php(40): CActiveForm->textDropDownList(Object(ProductTags), 'tag_id', Array)
+#2 /Library/WebServer/yii-master/framework/web/CBaseController.php(126): require('/Library/WebSer...')
+#3 /Library/WebServer/yii-master/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Library/WebSer...', Array, true)
+#4 /Library/WebServer/yii-master/framework/web/CController.php(869): CBaseController->renderFile('/Library/WebSer...', Array, true)
+#5 /Library/WebServer/Documents/olive/protected/views/productTags/create.php(18): CController->renderPartial('_form', Array)
+#6 /Library/WebServer/yii-master/framework/web/CBaseController.php(126): require('/Library/WebSer...')
+#7 /Library/WebServer/yii-master/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Library/WebSer...', Array, true)
+#8 /Library/WebServer/yii-master/framework/web/CController.php(869): CBaseController->renderFile('/Library/WebSer...', Array, true)
+#9 /Library/WebServer/yii-master/framework/web/CController.php(782): CController->renderPartial('create', Array, true)
+#10 /Library/WebServer/Documents/olive/protected/controllers/ProductTagsController.php(79): CController->render('create', Array)
+#11 /Library/WebServer/yii-master/framework/web/actions/CInlineAction.php(49): ProductTagsController->actionCreate()
+#12 /Library/WebServer/yii-master/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /Library/WebServer/yii-master/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 /Library/WebServer/yii-master/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#15 /Library/WebServer/yii-master/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 /Library/WebServer/yii-master/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 /Library/WebServer/yii-master/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 /Library/WebServer/yii-master/framework/web/CController.php(291): CFilterChain->run()
+#19 /Library/WebServer/yii-master/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /Library/WebServer/yii-master/framework/web/CWebApplication.php(282): CController->run('create')
+#21 /Library/WebServer/yii-master/framework/web/CWebApplication.php(141): CWebApplication->runController('productTags/cre...')
+#22 /Library/WebServer/yii-master/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#23 /Library/WebServer/Documents/olive/index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/olive/index.php?r=productTags/create&product_id=2313
+HTTP_REFERER=http://localhost/olive/index.php?r=products/view&id=2313
+---
