@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'List Prices', 'url'=>array('index')),
-	array('label'=>'Create Prices', 'url'=>array('create')),
+	//array('label'=>'Create Prices', 'url'=>array('create')),
 	array('label'=>'Update Prices', 'url'=>array('update', 'id'=>$model->id)),
 	array('label'=>'Delete Prices', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Manage Prices', 'url'=>array('admin')),

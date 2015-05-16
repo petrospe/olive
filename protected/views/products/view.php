@@ -15,6 +15,7 @@ $this->menu=array(
 	array('label'=>'Manage Products', 'url'=>array('admin')),
 );
 ?>
+
 <h1>View Products #<?php echo $model->id; ?></h1>
 
 

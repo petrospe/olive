@@ -10,7 +10,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'List Prices', 'url'=>array('index')),
-	array('label'=>'Create Prices', 'url'=>array('create')),
+	//array('label'=>'Create Prices', 'url'=>array('create')),
 	array('label'=>'View Prices', 'url'=>array('view', 'id'=>$model->id)),
 	array('label'=>'Manage Prices', 'url'=>array('admin')),
 );
