@@ -24,9 +24,11 @@
                 /*you can use here any find method you think 
                 proper to return your data from db*/
                 $categories = Categories::model()->findAll();
+                $subcategories = Subcategories::model()->findAll();
 
                 // format models resulting using listData     
                 $categories_list = CHtml::listData($categories, 'id', 'title');
+                $subcategories_list = CHtml::listData($subcategories, 'id', 'title');
         ?>
 
 	<div class="row">
@@ -39,6 +41,12 @@
 		<?php echo $form->labelEx($model,'category_id'); ?>
 		<?php echo $form->dropDownList($model,'category_id', $categories_list); ?>
 		<?php echo $form->error($model,'category_id'); ?>
+	</div>
+        
+        <div class="row">
+		<?php echo $form->labelEx($model,'subcategory_id'); ?>
+		<?php echo $form->dropDownList($model,'subcategory_id', $subcategories_list); ?>
+		<?php echo $form->error($model,'subcategory_id'); ?>
 	</div>
 
 	<div class="row buttons">

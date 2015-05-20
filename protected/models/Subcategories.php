@@ -1,27 +1,28 @@
 <?php
 
 /**
- * This is the model class for table "categories".
+ * This is the model class for table "subcategories".
  *
- * The followings are the available columns in table 'categories':
+ * The followings are the available columns in table 'subcategories':
  * @property integer $id
- * @property integer $parent_id
- * @property integer $site_id
- * @property integer $productype_id
+ * @property integer $category_id
  * @property string $title
  * @property string $title_en
  * @property string $titleSEO
  * @property integer $ordering
  * @property integer $active
+ *
+ * The followings are the available model relations:
+ * @property Categories $category
  */
-class Categories extends CActiveRecord
+class Subcategories extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'categories';
+		return 'subcategories';
 	}
 
 	/**
@@ -32,12 +33,12 @@ class Categories extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, site_id, productype_id, title, title_en, titleSEO, ordering, active', 'required'),
-			array('id, site_id, productype_id, ordering, active', 'numerical', 'integerOnly'=>true),
+			array('category_id, title, title_en, titleSEO, ordering, active', 'required'),
+			array('category_id, ordering, active', 'numerical', 'integerOnly'=>true),
 			array('title, title_en, titleSEO', 'length', 'max'=>60),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, site_id, productype_id, title, title_en, titleSEO, ordering, active', 'safe', 'on'=>'search'),
+			array('id, category_id, title, title_en, titleSEO, ordering, active', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -49,6 +50,7 @@ class Categories extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'category' => array(self::BELONGS_TO, 'Categories', 'category_id'),
 		);
 	}
 
@@ -59,8 +61,7 @@ class Categories extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'site_id' => 'Site',
-			'productype_id' => 'Productype',
+			'category_id' => 'Category',
 			'title' => 'Title',
 			'title_en' => 'Title En',
 			'titleSEO' => 'Title Seo',
@@ -88,8 +89,7 @@ class Categories extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('site_id',$this->site_id);
-		$criteria->compare('productype_id',$this->productype_id);
+		$criteria->compare('category_id',$this->category_id);
 		$criteria->compare('title',$this->title,true);
 		$criteria->compare('title_en',$this->title_en,true);
 		$criteria->compare('titleSEO',$this->titleSEO,true);
@@ -105,7 +105,7 @@ class Categories extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Categories the static model class
+	 * @return Subcategories the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

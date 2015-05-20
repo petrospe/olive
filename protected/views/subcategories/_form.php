@@ -1,13 +1,13 @@
 <?php
-/* @var $this CategoriesController */
-/* @var $model Categories */
+/* @var $this SubcategoriesController */
+/* @var $model Subcategories */
 /* @var $form CActiveForm */
 ?>
 
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'categories-form',
+	'id'=>'subcategories-form',
 	// Please note: When you enable ajax validation, make sure the corresponding
 	// controller action is handling ajax validation correctly.
 	// There is a call to performAjaxValidation() commented in generated controller code.
@@ -20,21 +20,9 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'id'); ?>
-		<?php echo $form->textField($model,'id'); ?>
-		<?php echo $form->error($model,'id'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'site_id'); ?>
-		<?php echo $form->textField($model,'site_id'); ?>
-		<?php echo $form->error($model,'site_id'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'productype_id'); ?>
-		<?php echo $form->textField($model,'productype_id'); ?>
-		<?php echo $form->error($model,'productype_id'); ?>
+		<?php echo $form->labelEx($model,'category_id'); ?>
+		<?php echo $form->textField($model,'category_id'); ?>
+		<?php echo $form->error($model,'category_id'); ?>
 	</div>
 
 	<div class="row">

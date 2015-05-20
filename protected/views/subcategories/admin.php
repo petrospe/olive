@@ -1,15 +1,15 @@
 <?php
-/* @var $this ProductCategoriesController */
-/* @var $model ProductCategories */
+/* @var $this SubcategoriesController */
+/* @var $model Subcategories */
 
 $this->breadcrumbs=array(
-	'Product Categories'=>array('index'),
+	'Subcategories'=>array('index'),
 	'Manage',
 );
 
 $this->menu=array(
-	array('label'=>'List ProductCategories', 'url'=>array('index')),
-	array('label'=>'Create ProductCategories', 'url'=>array('create')),
+	array('label'=>'List Subcategories', 'url'=>array('index')),
+	array('label'=>'Create Subcategories', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -18,7 +18,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#product-categories-grid').yiiGridView('update', {
+	$('#subcategories-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -26,7 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Product Categories</h1>
+<h1>Manage Subcategories</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -41,14 +41,19 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 </div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'product-categories-grid',
+	'id'=>'subcategories-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'product_id',
 		'category_id',
-                'subcategory_id',
+		'title',
+		'title_en',
+		'titleSEO',
+		'ordering',
+		/*
+		'active',
+		*/
 		array(
 			'class'=>'CButtonColumn',
 		),

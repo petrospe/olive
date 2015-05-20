@@ -22,7 +22,6 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'parent_id',
 		'site_id',
 		'productype_id',
 		'title',
