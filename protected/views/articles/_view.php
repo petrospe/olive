@@ -29,11 +29,12 @@
 	<?php echo CHtml::encode($data->subtitle_en); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b>
+	<?php /*
+         
+        <b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b>
 	<?php echo CHtml::encode($data->description); ?>
 	<br />
-
-	<?php /*
+        
 	<b><?php echo CHtml::encode($data->getAttributeLabel('description_en')); ?>:</b>
 	<?php echo CHtml::encode($data->description_en); ?>
 	<br />
