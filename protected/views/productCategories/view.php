@@ -23,8 +23,9 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'product_id',
+                'product.title',
 		'category_id',
-                'subcategory_id',
+                'category.title',
 	),
 )); ?>
 

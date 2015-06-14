@@ -47,8 +47,9 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'columns'=>array(
 		'id',
 		'product_id',
+                //'product.title',
 		'category_id',
-                'subcategory_id',
+                //'category.title',
 		array(
 			'class'=>'CButtonColumn',
 		),

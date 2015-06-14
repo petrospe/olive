@@ -170,4 +170,42 @@ class CategoriesController extends Controller
 			Yii::app()->end();
 		}
 	}
+        
+        private static $menuTree = array();
+ 
+        public static function getMenuTree() {
+             if (empty(self::$menuTree)) {
+                 $rows = Categories::model()->findAll('parent_id IS NULL');
+                 foreach ($rows as $item) {
+                     self::$menuTree[] = self::getMenuItems($item);
+                 }
+             }
+             return self::$menuTree;
+         }
+
+         private static function getMenuItems($modelRow) {
+
+             if (!$modelRow)
+                 return;
+
+             if (isset($modelRow->Childs)) {
+                 $chump = self::getMenuItems($modelRow->Childs);
+                 if ($chump != null)
+                     $res = array('label' => $modelRow->title, 'items' => $chump, 'url' => Yii::app()->createUrl('categories/admin', array('id' => $modelRow->id)));
+                 else
+                     $res = array('label' => $modelRow->title, 'url' => Yii::app()->createUrl('categories/view', array('id' => $modelRow->id)));
+                 return $res;
+             } else {
+                 if (is_array($modelRow)) {
+                     $arr = array();
+                     foreach ($modelRow as $leaves) {
+                         $arr[] = self::getMenuItems($leaves);
+                     }
+                     return $arr;
+                 } else {
+                     return array('label' => ($modelRow->title), 'url' => Yii::app()->createUrl('categories/index', array('id' => $modelRow->id)));
+                 }
+             }
+    }
+        
 }

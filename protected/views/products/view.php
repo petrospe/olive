@@ -30,10 +30,10 @@ $this->menu=array(
 		'title',
 		'title_en',
 		'titleSEO',
-		'subtitle',
-		'subtitle_en',
+		'subtitle:html',
+		'subtitle_en:html',
 		'description:html',
-		'description_en',
+		'description_en:html',
 		'active',
 		'created',
 		'updated',
@@ -119,12 +119,14 @@ if ($model->productype_id==1 || $model->productype_id==2 || $model->productype_i
                 'summaryText'=>'<h1>Manage Categories #</h1>',
                 'dataProvider'=>$productCategoriesDataProvider,
                 'columns'=>array(
-                        'category_id',
+                        /*array(
+                                    'name'=>'category_id',
+                                    'type'=>'raw', 'value'=>'Categories::model()->findByPk($data->category_id)->title',
+                                        ),*/
                         array(
                                     'name'=>'category_id',
                                     'type'=>'raw', 'value'=>'Categories::model()->findByPk($data->category_id)->title',
                                         ),
-                        /*'site_id',*/
                         array(
                                 'class'=>'CButtonColumn',
                                 'template' => '{view}{update}{delete}',
@@ -166,12 +168,10 @@ if ($model->productype_id==1 || $model->productype_id==2 || $model->productype_i
                 'summaryText'=>'<h1>Manage Tags #</h1>',
                 'dataProvider'=>$productTagsDataProvider,
                 'columns'=>array(
-                        'tag_id',
                         array(
                                     'name'=>'tag_id',
                                     'type'=>'raw', 'value'=>'Tags::model()->findByPk($data->tag_id)->description',
                                         ),
-                        /*'site_id',*/
                         array(
                                 'class'=>'CButtonColumn',
                                 'template' => '{view}{update}{delete}',

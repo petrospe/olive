@@ -33,10 +33,11 @@ class Articles extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, site_id, title, title_en, subtitle, subtitle_en, description, description_en, publicdate, active', 'required'),
+			array('site_id, title, description, publicdate', 'required'),
 			array('id, site_id, active', 'numerical', 'integerOnly'=>true),
-			array('title, title_en', 'length', 'max'=>50),
+			array('title, title_en', 'length', 'max'=>255),
 			array('subtitle, subtitle_en', 'length', 'max'=>80),
+                        array('publicdate', 'type', 'type' => 'date', 'dateFormat' => 'yyyy-MM-dd'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, site_id, title, title_en, subtitle, subtitle_en, description, description_en, publicdate, active', 'safe', 'on'=>'search'),
@@ -95,8 +96,8 @@ class Articles extends CActiveRecord
 		$criteria->compare('site_id',$this->site_id);
 		$criteria->compare('title',$this->title,true);
 		$criteria->compare('title_en',$this->title_en,true);
-		$criteria->compare('subtitle',$this->subtitle,true);
-		$criteria->compare('subtitle_en',$this->subtitle_en,true);
+		$criteria->compare('subtitle',$this->subtitle);
+		$criteria->compare('subtitle_en',$this->subtitle_en);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('description_en',$this->description_en,true);
 		$criteria->compare('publicdate',$this->publicdate,true);

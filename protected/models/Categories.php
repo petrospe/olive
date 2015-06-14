@@ -32,7 +32,7 @@ class Categories extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, site_id, productype_id, title, title_en, titleSEO, ordering, active', 'required'),
+			array('site_id, productype_id, title, title_en, titleSEO, ordering', 'required'),
 			array('id, site_id, productype_id, ordering, active', 'numerical', 'integerOnly'=>true),
 			array('title, title_en, titleSEO', 'length', 'max'=>60),
 			// The following rule is used by search().
@@ -49,6 +49,7 @@ class Categories extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+                    'Childs' => array(self::HAS_MANY, 'Categories', 'parent_id'),
 		);
 	}
 
@@ -59,6 +60,7 @@ class Categories extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+                        'parent_id' => 'Parent Category',
 			'site_id' => 'Site',
 			'productype_id' => 'Productype',
 			'title' => 'Title',
@@ -88,6 +90,7 @@ class Categories extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+                $criteria->compare('parent_id',$this->parent_id);
 		$criteria->compare('site_id',$this->site_id);
 		$criteria->compare('productype_id',$this->productype_id);
 		$criteria->compare('title',$this->title,true);
@@ -111,4 +114,15 @@ class Categories extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        public function getParentOptions()
+        {
+            $criteria = new CDbCriteria();
+            $criteria->condition = 'parent_id IS NULL';
+            $model = Categories::model()->findAll($criteria);
+            
+            $list = CHtml::listData($model, 'id', 'title');
+                
+            return $list;
+        }
 }

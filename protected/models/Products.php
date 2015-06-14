@@ -137,13 +137,14 @@ class Products extends CActiveRecord
 		return parent::model($className);
 	}
         
-                public function getTypeOptions()
+        public function getTypeOptions()
         {
             return CHtml::listData(Products::model() ->findAll(), 'id', 'title');
         }
         
         /* Update Modified, Created dates */
-	public function beforeSave() {
+	public function beforeSave() 
+        {
 	    if ($this->isNewRecord)
 	        $this->created = new CDbExpression('NOW()');
 	    else

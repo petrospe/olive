@@ -92,6 +92,9 @@ class Associates extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+                        'sort'=>array(
+                        'defaultOrder'=>'last_name ASC',
+                         ),
 		));
 	}
 

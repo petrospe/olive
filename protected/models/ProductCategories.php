@@ -27,10 +27,10 @@ class ProductCategories extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('product_id, category_id', 'required'),
-			array('product_id, category_id, subcategory_id', 'numerical', 'integerOnly'=>true),
+			array('product_id, category_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, product_id, category_id, subcategory_id', 'safe', 'on'=>'search'),
+			array('id, product_id, category_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -42,6 +42,8 @@ class ProductCategories extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+                    'category' => array(self::BELONGS_TO, 'Categories', 'category_id'),
+                    'product' => array(self::BELONGS_TO, 'Products', 'product_id'),
 		);
 	}
 
@@ -54,7 +56,6 @@ class ProductCategories extends CActiveRecord
 			'id' => 'ID',
 			'product_id' => 'Product',
 			'category_id' => 'Category',
-                        'subcategory_id' => 'Subcategory',
 		);
 	}
 
@@ -79,7 +80,6 @@ class ProductCategories extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('product_id',$this->product_id);
 		$criteria->compare('category_id',$this->category_id);
-                $criteria->compare('subcategory_id',$this->subcategory_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -26,8 +26,8 @@ class PublicationSeries extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, description, description_en', 'required'),
-			array('id', 'numerical', 'integerOnly'=>true, 'setOnEmpty'=>true),
+			array('description, description_en', 'required'),
+			array('id', 'numerical', 'integerOnly'=>true),
 			array('description, description_en', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
