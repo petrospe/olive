@@ -44,6 +44,7 @@ class Publications extends CActiveRecord
 			array('year', 'length', 'max'=>4),
 			array('dimensions', 'length', 'max'=>10),
 			array('image, abstract, content', 'length', 'max'=>50),
+                        //array('image', 'file', 'types'=>'jpg, gif, png', 'safe' => false),
                         array('publicdate', 'type', 'type' => 'date', 'dateFormat' => 'yyyy-MM-dd'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

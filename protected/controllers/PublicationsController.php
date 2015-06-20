@@ -70,6 +70,12 @@ class PublicationsController extends Controller
 		if(isset($_POST['Publications']))
 		{
 			$model->attributes=$_POST['Publications'];
+                        $model->image=CUploadedFile::getInstance($model,'image');
+                        if($model->image != null) // validate to save file
+                            {
+                          $model->image->saveAs('uploads/images/products/'. $model->product_id.'.jpg');
+                          // redirect to success page
+                            }
                         if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -94,6 +100,12 @@ class PublicationsController extends Controller
 		if(isset($_POST['Publications']))
 		{
 			$model->attributes=$_POST['Publications'];
+                        $model->image=CUploadedFile::getInstance($model,'image');
+                        if($model->image != null) // validate to save file
+                            {
+                          $model->image->saveAs('uploads/images/products/'. $model->product_id.'.jpg');
+                          // redirect to success page
+                            }
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
