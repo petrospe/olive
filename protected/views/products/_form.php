@@ -63,25 +63,25 @@ $_SESSION['KCFINDER']['uploadDir'] = Yii::app()->basePath."/../uploads/"; // pat
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'subtitle'); ?>
-		<?php echo $form->textArea($model,'subtitle',array('rows'=>6, 'cols'=>50, 'id'=>'editor1')); ?>
+		<?php echo $form->textArea($model,'subtitle',array('rows'=>6, 'cols'=>50, 'id'=>'editor-subtitle')); ?>
 		<?php echo $form->error($model,'subtitle'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'subtitle_en'); ?>
-		<?php echo $form->textArea($model,'subtitle_en',array('rows'=>6, 'cols'=>50, 'id'=>'editor2')); ?>
+		<?php echo $form->textArea($model,'subtitle_en',array('rows'=>6, 'cols'=>50, 'id'=>'editor-subtitle_en')); ?>
 		<?php echo $form->error($model,'subtitle_en'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'description'); ?>
-		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50, 'id'=>'editor3')); ?>
+		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50, 'id'=>'editor-description')); ?>
 		<?php echo $form->error($model,'description'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'description_en'); ?>
-		<?php echo $form->textArea($model,'description_en',array('rows'=>6, 'cols'=>50, 'id'=>'editor4')); ?>
+		<?php echo $form->textArea($model,'description_en',array('rows'=>6, 'cols'=>50, 'id'=>'editor-description_en')); ?>
 		<?php echo $form->error($model,'description_en'); ?>
 	</div>
 
@@ -98,7 +98,7 @@ $_SESSION['KCFINDER']['uploadDir'] = Yii::app()->basePath."/../uploads/"; // pat
 <?php $this->endWidget(); ?>
 
 <script type="text/javascript">
-    CKEDITOR.replace( 'editor1', {
+    CKEDITOR.replace( 'editor-subtitle', {
          filebrowserBrowseUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/browse.php?type=files',
          filebrowserImageBrowseUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/browse.php?type=images',
          filebrowserFlashBrowseUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/browse.php?type=flash',
@@ -106,7 +106,7 @@ $_SESSION['KCFINDER']['uploadDir'] = Yii::app()->basePath."/../uploads/"; // pat
          filebrowserImageUploadUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/upload.php?type=images',
          filebrowserFlashUploadUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/upload.php?type=flash'
     });
-    CKEDITOR.replace( 'editor2', {
+    CKEDITOR.replace( 'editor-subtitle_en', {
          filebrowserBrowseUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/browse.php?type=files',
          filebrowserImageBrowseUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/browse.php?type=images',
          filebrowserFlashBrowseUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/browse.php?type=flash',
@@ -114,7 +114,7 @@ $_SESSION['KCFINDER']['uploadDir'] = Yii::app()->basePath."/../uploads/"; // pat
          filebrowserImageUploadUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/upload.php?type=images',
          filebrowserFlashUploadUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/upload.php?type=flash'
     });
-    CKEDITOR.replace( 'editor3', {
+    CKEDITOR.replace( 'editor-description', {
          filebrowserBrowseUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/browse.php?type=files',
          filebrowserImageBrowseUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/browse.php?type=images',
          filebrowserFlashBrowseUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/browse.php?type=flash',
@@ -122,7 +122,7 @@ $_SESSION['KCFINDER']['uploadDir'] = Yii::app()->basePath."/../uploads/"; // pat
          filebrowserImageUploadUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/upload.php?type=images',
          filebrowserFlashUploadUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/upload.php?type=flash'
     });
-    CKEDITOR.replace( 'editor4',{
+    CKEDITOR.replace( 'editor-description_en',{
          filebrowserBrowseUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/browse.php?type=files',
          filebrowserImageBrowseUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/browse.php?type=images',
          filebrowserFlashBrowseUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/browse.php?type=flash',

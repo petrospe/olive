@@ -40,6 +40,7 @@ class Products extends CActiveRecord
 			array('productype_id, title, titleSEO, description', 'required'),
 			array('id, atlantis_id, productype_id, parent_id, active', 'numerical', 'integerOnly'=>true),
 			array('title, title_en, titleSEO', 'length', 'max'=>255),
+                        array('subtitle, subtitle_en, description_en', 'default', 'setOnEmpty' => true, 'value' => NULL),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, atlantis_id, productype_id, parent_id, title, title_en, titleSEO, subtitle, subtitle_en, description, description_en, active, created, updated', 'safe', 'on'=>'search'),

@@ -33,10 +33,11 @@ class Articles extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('site_id, title, description, publicdate', 'required'),
+			array('site_id, title, subtitle, description, publicdate', 'required'),
 			array('id, site_id, active', 'numerical', 'integerOnly'=>true),
 			array('title, title_en', 'length', 'max'=>255),
 			array('subtitle, subtitle_en', 'length', 'max'=>80),
+                        array('description_en', 'default', 'setOnEmpty' => true, 'value' => NULL),
                         array('publicdate', 'type', 'type' => 'date', 'dateFormat' => 'yyyy-MM-dd'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

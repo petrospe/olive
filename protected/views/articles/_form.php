@@ -2,6 +2,9 @@
 /* @var $this ArticlesController */
 /* @var $model Articles */
 /* @var $form CActiveForm */
+$_SESSION['KCFINDER']['disabled'] = false; // enables the file browser in the admin
+$_SESSION['KCFINDER']['uploadURL'] = Yii::app()->baseUrl."/uploads/"; // URL for the uploads folder
+$_SESSION['KCFINDER']['uploadDir'] = Yii::app()->basePath."/../uploads/"; // path to the uploads folder
 ?>
 <script src="<?php echo Yii::app()->baseUrl.'/ckeditor/ckeditor.js'; ?>"></script>
 <div class="form">
@@ -36,37 +39,37 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'title'); ?>
-		<?php echo $form->textField($model,'title',array('size'=>50,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'title',array('size'=>50,'maxlength'=>255, 'placeholder'=>'Μιά νέα Εκδήλωση')); ?>
 		<?php echo $form->error($model,'title'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'title_en'); ?>
-		<?php echo $form->textField($model,'title_en',array('size'=>50,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'title_en',array('size'=>50,'maxlength'=>255, 'placeholder'=>'A new Event')); ?>
 		<?php echo $form->error($model,'title_en'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'subtitle'); ?>
-		<?php echo $form->textField($model,'subtitle',array('size'=>60,'maxlength'=>80, 'id'=>'editor1')); ?>
+		<?php echo $form->textField($model,'subtitle',array('size'=>60,'maxlength'=>80, 'placeholder'=>'π.χ. 10 Οκτωβρίου 2014 ή Όνομα Διοργάνωτη')); ?>
 		<?php echo $form->error($model,'subtitle'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'subtitle_en'); ?>
-		<?php echo $form->textField($model,'subtitle_en',array('size'=>60,'maxlength'=>80, 'id'=>'editor2')); ?>
+		<?php echo $form->textField($model,'subtitle_en',array('size'=>60,'maxlength'=>80, 'placeholder'=>'e.g. October 10, 2014 or Provider Name')); ?>
 		<?php echo $form->error($model,'subtitle_en'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'description'); ?>
-		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50, 'id'=>'editor3')); ?>
+		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50, 'id'=>'editor-description')); ?>
 		<?php echo $form->error($model,'description'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'description_en'); ?>
-		<?php echo $form->textArea($model,'description_en',array('rows'=>6, 'cols'=>50, 'id'=>'editor4')); ?>
+		<?php echo $form->textArea($model,'description_en',array('rows'=>6, 'cols'=>50, 'id'=>'editor-description_en')); ?>
 		<?php echo $form->error($model,'description_en'); ?>
 	</div>
 
@@ -100,9 +103,21 @@
 <?php $this->endWidget(); ?>
 
 <script type="text/javascript">
-    CKEDITOR.replace( 'editor1' );
-    CKEDITOR.replace( 'editor2' );
-    CKEDITOR.replace( 'editor3' );
-    CKEDITOR.replace( 'editor4' );
+    CKEDITOR.replace( 'editor-description', {
+         filebrowserBrowseUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/browse.php?type=files',
+         filebrowserImageBrowseUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/browse.php?type=images',
+         filebrowserFlashBrowseUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/browse.php?type=flash',
+         filebrowserUploadUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/upload.php?type=files',
+         filebrowserImageUploadUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/upload.php?type=images',
+         filebrowserFlashUploadUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/upload.php?type=flash'
+    });
+    CKEDITOR.replace( 'editor-description_en',{
+         filebrowserBrowseUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/browse.php?type=files',
+         filebrowserImageBrowseUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/browse.php?type=images',
+         filebrowserFlashBrowseUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/browse.php?type=flash',
+         filebrowserUploadUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/upload.php?type=files',
+         filebrowserImageUploadUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/upload.php?type=images',
+         filebrowserFlashUploadUrl: '<?php echo Yii::app()->baseUrl; ?>/kcfinder/upload.php?type=flash'
+    } );
 </script>
 </div><!-- form -->
