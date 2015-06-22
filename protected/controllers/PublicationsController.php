@@ -73,7 +73,7 @@ class PublicationsController extends Controller
                         $model->image=CUploadedFile::getInstance($model,'image');
                         if($model->image != null) // validate to save file
                             {
-                          $model->image->saveAs('uploads/images/products/'. $model->product_id.'.jpg');
+                          $model->image->saveAs('uploads/covers/'. $model->product_id.'.jpg');
                           // redirect to success page
                             }
                         if($model->save())
@@ -103,7 +103,7 @@ class PublicationsController extends Controller
                         $model->image=CUploadedFile::getInstance($model,'image');
                         if($model->image != null) // validate to save file
                             {
-                          $model->image->saveAs('uploads/images/products/'. $model->product_id.'.jpg');
+                          $model->image->saveAs('uploads/covers/'. $model->product_id.'.jpg');
                           // redirect to success page
                             }
 			if($model->save())

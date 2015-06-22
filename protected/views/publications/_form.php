@@ -66,7 +66,8 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'image'); ?>
-		<?php echo $form->fileField($model,'image',array('size'=>50,'maxlength'=>50, 'placeholder'=>'image.png')); ?>
+                <?php echo $form->textField($model,'image',array('size'=>50,'maxlength'=>50, 'placeholder'=>'image.png')); ?>
+		<?php echo $form->fileField($model,'image'); ?>
 		<?php echo $form->error($model,'image'); ?>
 	</div>
 
