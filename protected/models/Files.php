@@ -52,6 +52,9 @@ class Files extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+                    'publication_image' => array(self::HAS_MANY, 'Publications', 'image'),
+                    'publication_content' => array(self::HAS_MANY, 'Publications', 'content'),
+                    'publication_abstract' => array(self::HAS_MANY, 'Publications', 'abstract'),
 		);
 	}
 

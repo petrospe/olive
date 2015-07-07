@@ -61,6 +61,9 @@ class Publications extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
                     'products' => array(self::BELONGS_TO, 'Products', 'product_id'),
+                    'file_image' => array(self::BELONGS_TO, 'Files', 'image'),
+                    'file_content' => array(self::BELONGS_TO, 'Files', 'content'),
+                    'file_abstract' => array(self::BELONGS_TO, 'Files', 'abstract'),
 		);
 	}
 
