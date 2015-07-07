@@ -10,6 +10,7 @@
  * @property string $file_type
  * @property string $file_size
  * @property string $file_path
+ * @property string $item_id
  * @property string $create_date
  * @property string $modification_date
  */
@@ -38,6 +39,7 @@ class Files extends CActiveRecord
 			array('file_size', 'length', 'max'=>11),
 			array('file_path', 'length', 'max'=>250),
 			array('create_date, modification_date', 'safe'),
+                        array('item_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, filename, filename_sys, file_type, file_size, file_path, create_date, modification_date', 'safe', 'on'=>'search'),
@@ -70,6 +72,7 @@ class Files extends CActiveRecord
 			'file_type' => 'File Type',
 			'file_size' => 'File Size',
 			'file_path' => 'File Path',
+                        'item_id' => 'Item',
 			'create_date' => 'Create Date',
 			'modification_date' => 'Modification Date',
 		);
@@ -99,6 +102,7 @@ class Files extends CActiveRecord
 		$criteria->compare('file_type',$this->file_type,true);
 		$criteria->compare('file_size',$this->file_size,true);
 		$criteria->compare('file_path',$this->file_path,true);
+                $criteria->compare('item_id',$this->item_id);
 		$criteria->compare('create_date',$this->create_date,true);
 		$criteria->compare('modification_date',$this->modification_date,true);
 
@@ -116,5 +120,16 @@ class Files extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+        
+        /* Update Modified, Created dates */
+	public function beforeSave() 
+        {
+	    if ($this->isNewRecord)
+	        $this->create_date = new CDbExpression('NOW()');
+	    else
+	        $this->modification_date = new CDbExpression('NOW()');
+	 
+	    return parent::beforeSave();
 	}
 }

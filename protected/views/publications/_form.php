@@ -67,6 +67,7 @@
 	<div class="row">
                 <?php echo $form->labelEx($model,'image'); ?>
 		<?php echo CHtml::Button('Add Image',array('submit'=>array('files/create','item_id'=>$model->id))); ?>
+                <?php echo $form->error($model,'image'); ?>
 	</div>
         <?php if($model->isNewRecord!='1'){ ?>
         <div class="row">
