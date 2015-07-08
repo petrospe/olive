@@ -70,7 +70,13 @@ class FilesController extends Controller
 		if(isset($_POST['Files']))
 		{
 			$model->attributes=$_POST['Files'];
-			if($model->save())
+                        $model->filename_sys=CUploadedFile::getInstance($model,'filename_sys');
+                        if($model->filename_sys != null) // validate to save file
+                            {
+                          $model->filename_sys->saveAs('uploads');
+                          // redirect to success page
+                            }
+                        if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
@@ -94,6 +100,12 @@ class FilesController extends Controller
 		if(isset($_POST['Files']))
 		{
 			$model->attributes=$_POST['Files'];
+                        $model->filename_sys=CUploadedFile::getInstance($model,'filename_sys');
+                        if($model->filename_sys != null) // validate to save file
+                            {
+                          $model->filename_sys->saveAs('uploads');
+                          // redirect to success page
+                            }
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
