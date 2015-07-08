@@ -19,7 +19,15 @@
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
+        
+        <?php $item_id = Yii::app()->request->getQuery('item_id'); ?>
 
+        <div class="row">
+		<?php echo $form->labelEx($model,'item_id'); ?>
+                <?php echo $form->textField($model, 'item_id', array('readonly'=>true,'value'=>$item_id)); ?>
+		<?php echo $form->error($model,'item_id'); ?>
+	</div>
+        
 	<div class="row">
 		<?php echo $form->labelEx($model,'filename'); ?>
 		<?php echo $form->textField($model,'filename',array('size'=>60,'maxlength'=>80)); ?>

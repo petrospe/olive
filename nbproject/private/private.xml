@@ -5,6 +5,7 @@
         <group>
             <file>file:/Library/WebServer/Documents/olive/protected/models/Publications.php</file>
             <file>file:/Library/WebServer/Documents/olive/protected/models/Files.php</file>
+            <file>file:/Library/WebServer/Documents/olive/protected/views/files/_form.php</file>
             <file>file:/Library/WebServer/Documents/olive/protected/views/publications/_form.php</file>
             <file>file:/Library/WebServer/Documents/olive/protected/views/publications/view.php</file>
             <file>file:/Library/WebServer/Documents/olive/protected/controllers/PublicationsController.php</file>
