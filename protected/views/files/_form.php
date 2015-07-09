@@ -33,47 +33,24 @@
                 <?php echo $form->dropDownList($model,'file_category_id', FilesCategories::model() ->getTypeOptions()); ?>
 		<?php echo $form->error($model,'file_category__id'); ?>
 	</div>
-        
-	<div class="row">
-		<?php echo $form->labelEx($model,'filename'); ?>
-		<?php echo $form->textField($model,'filename',array('size'=>60,'maxlength'=>80)); ?>
-		<?php echo $form->error($model,'filename'); ?>
-	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'filename_sys'); ?>
-		<?php echo CHtml::activeFileField($model, 'filename_sys'); ?>
+		<?php echo $form->fileField($model, 'filename_sys'); ?>
 		<?php echo $form->error($model,'filename_sys'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'file_type'); ?>
-		<?php echo $form->textField($model,'file_type',array('size'=>30,'maxlength'=>30)); ?>
-		<?php echo $form->error($model,'file_type'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'file_size'); ?>
-		<?php echo $form->textField($model,'file_size',array('size'=>11,'maxlength'=>11)); ?>
-		<?php echo $form->error($model,'file_size'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'file_path'); ?>
-		<?php echo $form->textField($model,'file_path',array('size'=>60,'maxlength'=>250)); ?>
-		<?php echo $form->error($model,'file_path'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'create_date'); ?>
-		<?php echo $form->textField($model,'create_date'); ?>
-		<?php echo $form->error($model,'create_date'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'modification_date'); ?>
-		<?php echo $form->textField($model,'modification_date'); ?>
-		<?php echo $form->error($model,'modification_date'); ?>
+        </div>
+        
+        <div class="row">
+		<?php echo $form->labelEx($model,'filename'); ?>
+                <?php echo $form->textField($model, 'filename', array('readonly'=>true)); ?>
+		<?php echo $form->error($model,'filename'); ?>
+                <!-- File attributes -->
+                <?php echo $form->hiddenField($model,'filename'); ?>
+		<?php echo $form->textField($model,'file_type'); ?>
+		<?php echo $form->hiddenField($model,'file_size'); ?>
+		<?php echo $form->hiddenField($model,'file_path'); ?>
+		<?php echo $form->hiddenField($model,'create_date'); ?>
+		<?php echo $form->hiddenField($model,'modification_date'); ?>
 	</div>
 
 	<div class="row buttons">

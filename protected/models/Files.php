@@ -136,4 +136,13 @@ class Files extends CActiveRecord
 	 
 	    return parent::beforeSave();
 	}
+        
+	public function getFilenameFull() 
+        {
+		if ($this->filename==""):
+			return $this->file_path.$this->filename_sys.".".$this->file_type;
+		else:
+			return $this->filename;
+		endif;
+	}
 }
