@@ -70,11 +70,12 @@ class FilesController extends Controller
 		if(isset($_POST['Files']))
 		{
 			$model->attributes=$_POST['Files'];
-                        $model->filename_sys=CUploadedFile::getInstance($model,'filename_sys');
-                        if($model->filename_sys != null) // validate to save file
+                        $uploadFile = CUploadedFile::getInstance($model, 'filename_sys');
+                        $fileName = "{$uploadFile}";
+                        $model->filename_sys = $fileName;
+                        if(isset($uploadFile))
                             {
-                          $model->filename_sys->saveAs('uploads');
-                          // redirect to success page
+                            $uploadFile->saveAs(Yii::app()->basePath.'../../uploads/'.$fileName);
                             }
                         if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
@@ -100,11 +101,12 @@ class FilesController extends Controller
 		if(isset($_POST['Files']))
 		{
 			$model->attributes=$_POST['Files'];
-                        $model->filename_sys=CUploadedFile::getInstance($model,'filename_sys');
-                        if($model->filename_sys != null) // validate to save file
+                        $uploadFile = CUploadedFile::getInstance($model, 'filename_sys');
+                        $fileName = "{$uploadFile}";
+                        $model->filename_sys = $fileName;
+                        if(isset($uploadFile))
                             {
-                          $model->filename_sys->saveAs('uploads');
-                          // redirect to success page
+                            $uploadFile->saveAs(Yii::app()->basePath.'../../uploads/'.$fileName);
                             }
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));

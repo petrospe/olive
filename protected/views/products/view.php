@@ -45,6 +45,7 @@ $this->menu=array(
     $pricesDataProvider = new CActiveDataProvider('Prices',array('criteria'=>$criteria));
     $productSitesDataProvider = new CActiveDataProvider('ProductSites',array('criteria'=>$criteria));
     $productAssociatesDataProvider = new CActiveDataProvider('ProductAssociates',array('criteria'=>$criteria));
+    $filesDataProvider = new CActiveDataProvider('Files',array('criteria'=>$criteria));
     
 if ($model->productype_id==1 || $model->productype_id==2 || $model->productype_id==3):
 
@@ -71,9 +72,6 @@ if ($model->productype_id==1 || $model->productype_id==2 || $model->productype_i
                         'vol',
                         'year',
                         'dimensions',
-                        'image',
-                        'abstract',
-                        'content',
                         'topSellers',
                         'inprint',
                         'publicdate',
@@ -337,6 +335,56 @@ if ($model->productype_id==1 || $model->productype_id==2 || $model->productype_i
     echo CHtml::Button('Add Price',array('submit'=>array('prices/create','product_id'=>$model->id)));
     }
 
+    if(!empty($filesDataProvider->itemCount))
+    {
+        $this->widget('zii.widgets.grid.CGridView', array(
+                'id'=>'files-grid',
+                'summaryText'=>'<h1>Manage Files #</h1>',
+                'dataProvider'=>$filesDataProvider,
+                'columns'=>array(
+ 		'id',
+		'filename',
+		'filename_sys',
+		'file_type',
+		'file_size',
+		'file_path',
+                'filescategories.description',
+		'create_date',
+		'modification_date',
+                        array(
+                                'class'=>'CButtonColumn',
+                                'template' => '{view}{update}{delete}',
+                                'buttons' => array(
+                                            'view'=>array(
+                                                    'label'=> 'View',
+                                                    'options'=>array(
+                                                        'class'=>'view'
+                                                        ),
+                                                    'url'=>'Yii::app()->createUrl("files/view", array("id"=>$data->id))'
+                                                    ),
+                                            'update'=>array(
+                                                    'label'=> 'Update',
+                                                    'options'=>array(
+                                                        'class'=>'view'
+                                                    ),
+                                                    'url'=>'Yii::app()->createUrl("files/update", array("id"=>$data->id))'
+                                                ),
+                                            'delete'=>array(
+                                                    'label'=> 'Delete',
+                                                    'options'=>array(
+                                                        'class'=>'delete'
+                                                    ),
+                                                    'url'=>'Yii::app()->createUrl("files/delete", array("id"=>$data->id))'
+                                                ),
+                                            ),
+                        ),
+                ),
+        ));
+    }
+    {
+    echo CHtml::Button('Add File',array('submit'=>array('files/create','product_id'=>$model->id)));
+    }
+    
     if(!empty($productSitesDataProvider->itemCount))
     {
             $this->widget('zii.widgets.grid.CGridView', array(

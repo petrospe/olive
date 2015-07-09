@@ -12,9 +12,6 @@
  * @property string $vol
  * @property string $year
  * @property string $dimensions
- * @property string $image
- * @property string $abstract
- * @property string $content
  * @property integer $topSellers
  * @property integer $inprint
  * @property string $publicdate
@@ -43,9 +40,7 @@ class Publications extends CActiveRecord
 			array('vol', 'length', 'max'=>6),
 			array('year', 'length', 'max'=>4),
 			array('dimensions', 'length', 'max'=>10),
-			array('image, abstract, content', 'length', 'max'=>50),
-                        //array('image', 'file', 'types'=>'jpg, gif, png', 'safe' => false),
-                        array('publicdate', 'type', 'type' => 'date', 'dateFormat' => 'yyyy-MM-dd'),
+            array('publicdate', 'type', 'type' => 'date', 'dateFormat' => 'yyyy-MM-dd'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, product_id, publication_series_id, serial, year, dimensions, topSellers, inprint, publicdate', 'safe', 'on'=>'search'),
@@ -61,9 +56,6 @@ class Publications extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
                     'products' => array(self::BELONGS_TO, 'Products', 'product_id'),
-                    'file_image' => array(self::BELONGS_TO, 'Files', 'image'),
-                    'file_content' => array(self::BELONGS_TO, 'Files', 'content'),
-                    'file_abstract' => array(self::BELONGS_TO, 'Files', 'abstract'),
 		);
 	}
 
@@ -81,9 +73,6 @@ class Publications extends CActiveRecord
 			'vol' => 'Vol',
 			'year' => 'Year',
 			'dimensions' => 'Dimensions',
-			'image' => 'Image',
-			'abstract' => 'Abstract',
-			'content' => 'Content',
 			'topSellers' => 'Top Sellers',
 			'inprint' => 'Inprint',
 			'publicdate' => 'Publicdate',
@@ -116,9 +105,6 @@ class Publications extends CActiveRecord
 		$criteria->compare('vol',$this->vol);
 		$criteria->compare('year',$this->year,true);
 		$criteria->compare('dimensions',$this->dimensions,true);
-		$criteria->compare('image',$this->image);
-		$criteria->compare('abstract',$this->abstract);
-		$criteria->compare('content',$this->content);
 		$criteria->compare('topSellers',$this->topSellers,true);
 		$criteria->compare('inprint',$this->inprint,true);
 		$criteria->compare('publicdate',$this->publicdate,true);

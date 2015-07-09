@@ -29,6 +29,14 @@
 	<?php echo CHtml::encode($data->file_path); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('product_id')); ?>:</b>
+	<?php echo CHtml::encode($data->product_id); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('file_category_id')); ?>:</b>
+	<?php echo CHtml::encode($data->file_category_id); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('create_date')); ?>:</b>
 	<?php echo CHtml::encode($data->create_date); ?>
 	<br />

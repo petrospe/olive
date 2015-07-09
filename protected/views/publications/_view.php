@@ -38,18 +38,6 @@
 	<?php echo CHtml::encode($data->dimensions); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('image')); ?>:</b>
-	<?php echo CHtml::encode($data->image); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('abstract')); ?>:</b>
-	<?php echo CHtml::encode($data->abstract); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('content')); ?>:</b>
-	<?php echo CHtml::encode($data->content); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('topSellers')); ?>:</b>
 	<?php echo CHtml::encode($data->topSellers); ?>
 	<br />

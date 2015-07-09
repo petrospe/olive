@@ -64,36 +64,6 @@
 	</div>
 
 	<div class="row">
-                <?php echo $form->labelEx($model,'image'); ?>
-		<?php echo CHtml::Button('Add Image',array('submit'=>array('files/create','item_id'=>$model->id))); ?>
-                <?php echo $form->error($model,'image'); ?>
-	</div>
-        <?php if($model->isNewRecord!='1'){ ?>
-        <div class="row">
-             <?php echo $model->image; ?>
-        </div>
-        <?php } ?>
-	<div class="row">
-		<?php echo $form->labelEx($model,'abstract'); ?>
-                <?php echo CHtml::Button('Add Abstract',array('submit'=>array('files/create','item_id'=>$model->id))); ?>
-		<?php echo $form->error($model,'abstract'); ?>
-	</div>
-        <?php if($model->isNewRecord!='1'){ ?>
-        <div class="row">
-             <?php echo $model->abstract; ?>
-        </div>
-        <?php } ?>
-	<div class="row">
-		<?php echo $form->labelEx($model,'content'); ?>
-		<?php echo CHtml::Button('Add Content',array('submit'=>array('files/create','item_id'=>$model->id))); ?>
-		<?php echo $form->error($model,'content'); ?>
-	</div>
-        <?php if($model->isNewRecord!='1'){ ?>
-        <div class="row">
-             <?php echo $model->content; ?>
-        </div>
-        <?php } ?>
-	<div class="row">
 		<?php echo $form->labelEx($model,'topSellers'); ?>
 		<?php echo $form->textField($model,'topSellers',array('placeholder'=>'1 - 5 or nothing')); ?>
 		<?php echo $form->error($model,'topSellers'); ?>

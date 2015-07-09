@@ -20,12 +20,18 @@
 
 	<?php echo $form->errorSummary($model); ?>
         
-        <?php $item_id = Yii::app()->request->getQuery('item_id'); ?>
+        <?php $product_id = Yii::app()->request->getQuery('product_id'); ?>
 
         <div class="row">
-		<?php echo $form->labelEx($model,'item_id'); ?>
-                <?php echo $form->textField($model, 'item_id', array('readonly'=>true,'value'=>$item_id)); ?>
-		<?php echo $form->error($model,'item_id'); ?>
+		<?php echo $form->labelEx($model,'product_id'); ?>
+                <?php echo $form->textField($model, 'product_id', array('readonly'=>true,'value'=>$product_id)); ?>
+		<?php echo $form->error($model,'product_id'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'file_category_id'); ?>
+                <?php echo $form->dropDownList($model,'file_category_id', FilesCategories::model() ->getTypeOptions()); ?>
+		<?php echo $form->error($model,'file_category__id'); ?>
 	</div>
         
 	<div class="row">
@@ -36,7 +42,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'filename_sys'); ?>
-		<?php echo $form->fileField($model,'filename_sys',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo CHtml::activeFileField($model, 'filename_sys'); ?>
 		<?php echo $form->error($model,'filename_sys'); ?>
 	</div>
 

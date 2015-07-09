@@ -10,7 +10,8 @@
  * @property string $file_type
  * @property string $file_size
  * @property string $file_path
- * @property string $item_id
+ * @property string $product_id
+ * @property string $file_category_id
  * @property string $create_date
  * @property string $modification_date
  */
@@ -39,7 +40,8 @@ class Files extends CActiveRecord
 			array('file_size', 'length', 'max'=>11),
 			array('file_path', 'length', 'max'=>250),
 			array('create_date, modification_date', 'safe'),
-                        array('item_id', 'numerical', 'integerOnly'=>true),
+                        array('product_id', 'numerical', 'integerOnly'=>true),
+                        array('file_category_id', 'numerical', 'integerOnly'=>true),
                         //array('filename_sys', 'file', 'types'=>'jpg, gif, png, txt, zip', 'safe' => false),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -55,9 +57,8 @@ class Files extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-                    'publication_image' => array(self::HAS_MANY, 'Publications', 'image'),
-                    'publication_content' => array(self::HAS_MANY, 'Publications', 'content'),
-                    'publication_abstract' => array(self::HAS_MANY, 'Publications', 'abstract'),
+                    'filescategories' => array(self::BELONGS_TO, 'FilesCategories', 'file_category_id'),
+                    'products' => array(self::BELONGS_TO, 'Products', 'product_id'),
 		);
 	}
 
@@ -73,7 +74,8 @@ class Files extends CActiveRecord
 			'file_type' => 'File Type',
 			'file_size' => 'File Size',
 			'file_path' => 'File Path',
-                        'item_id' => 'Item',
+                        'product_id' => 'Product',
+                        'file_category_id' => 'File Category',
 			'create_date' => 'Create Date',
 			'modification_date' => 'Modification Date',
 		);
@@ -103,7 +105,8 @@ class Files extends CActiveRecord
 		$criteria->compare('file_type',$this->file_type,true);
 		$criteria->compare('file_size',$this->file_size,true);
 		$criteria->compare('file_path',$this->file_path,true);
-                $criteria->compare('item_id',$this->item_id);
+                $criteria->compare('product_id',$this->product_id);
+                $criteria->compare('file_category_id',$this->product_id);
 		$criteria->compare('create_date',$this->create_date,true);
 		$criteria->compare('modification_date',$this->modification_date,true);
 
