@@ -77,6 +77,8 @@ class FilesController extends Controller
                             if(isset($uploadFile))
                                 {
                                 $uploadFile->saveAs(Yii::app()->basePath.'../../uploads/covers/'.$fileName);
+                                //$model->file_path = 'uploads/covers/' . basename($_FILES['name']);
+                                //$model->file_size = getimagesize($fileName);
                                 }
                         if($model->file_category_id == 2)     
                             if(isset($uploadFile))
