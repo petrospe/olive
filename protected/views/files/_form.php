@@ -46,7 +46,7 @@
 		<?php echo $form->error($model,'filename'); ?>
                 <!-- File attributes -->
                 <?php echo $form->hiddenField($model,'filename'); ?>
-		<?php echo $form->textField($model,'file_type'); ?>
+		<?php echo $form->hiddenField($model,'file_type'); ?>
 		<?php echo $form->hiddenField($model,'file_size'); ?>
 		<?php echo $form->hiddenField($model,'file_path'); ?>
 		<?php echo $form->hiddenField($model,'create_date'); ?>

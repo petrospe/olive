@@ -40,9 +40,10 @@ class Files extends CActiveRecord
 			array('file_size', 'length', 'max'=>11),
 			array('file_path', 'length', 'max'=>250),
 			array('create_date, modification_date', 'safe'),
+                        array('modification_date', 'default', 'setOnEmpty' => true, 'value' => null),
                         array('product_id', 'numerical', 'integerOnly'=>true),
                         array('file_category_id', 'numerical', 'integerOnly'=>true),
-                        array('filename_sys', 'file', 'types'=>'jpg, gif, png, txt, zip', 'safe' => false),
+                        array('filename_sys', 'file', 'types'=>'jpeg, jpg, gif, png, txt, zip', 'safe' => false),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, filename, filename_sys, file_type, file_size, file_path, create_date, modification_date', 'safe', 'on'=>'search'),

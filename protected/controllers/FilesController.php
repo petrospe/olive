@@ -71,25 +71,33 @@ class FilesController extends Controller
 		{
 			$model->attributes=$_POST['Files'];
                         $uploadFile = CUploadedFile::getInstance($model, 'filename_sys');
-                        $fileName = "{$uploadFile}";
-                        $model->filename_sys = $fileName;
+                        $extension=$uploadFile->getExtensionName();
+                        $fileName = $model->product_id. '.' .$extension; //Change the uploaded file name
+                        $withoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $fileName); //Remove file extension
                         if($model->file_category_id == 1)     
                             if(isset($uploadFile))
                                 {
                                 $uploadFile->saveAs(Yii::app()->basePath.'../../uploads/covers/'.$fileName);
-                                //$model->file_path = 'uploads/covers/' . basename($_FILES['name']);
-                                //$model->file_size = getimagesize($fileName);
+                                $model->file_path=('uploads/covers/');
                                 }
                         if($model->file_category_id == 2)     
                             if(isset($uploadFile))
                                 {
-                                $uploadFile->saveAs(Yii::app()->basePath.'../../uploads/contents/'.$fileName);
+                                $uploadfileName = "{$uploadFile}"; //Keep the initial name for contents
+                                $uploadFile->saveAs(Yii::app()->basePath.'../../uploads/contents/'.$uploadfileName);
+                                $model->file_path=('uploads/contents/');
                                 }
                         if($model->file_category_id == 3)     
                             if(isset($uploadFile))
                                 {
                                 $uploadFile->saveAs(Yii::app()->basePath.'../../uploads/abstracts/'.$fileName);
+                                $model->file_path=('uploads/abstracts/');
                                 }
+                            $model->filename=$withoutExt;
+                            $model->filename_sys = $fileName;
+                            //$model->filename=$uploadFile->getName(); 
+                            $model->file_type=$uploadFile->getType();
+                            $model->file_size=$uploadFile->getSize();
                         if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -115,23 +123,32 @@ class FilesController extends Controller
 		{
 			$model->attributes=$_POST['Files'];
                         $uploadFile = CUploadedFile::getInstance($model, 'filename_sys');
-                        $fileName = "{$uploadFile}";
-                        $model->filename_sys = $fileName;
+                        $extension=$uploadFile->getExtensionName();
+                        $fileName = $model->product_id. '.' .$extension;
+                        $withoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $fileName);
                         if($model->file_category_id == 1)     
                             if(isset($uploadFile))
                                 {
                                 $uploadFile->saveAs(Yii::app()->basePath.'../../uploads/covers/'.$fileName);
+                                $model->file_path=('uploads/covers/');
                                 }
                         if($model->file_category_id == 2)     
                             if(isset($uploadFile))
                                 {
-                                $uploadFile->saveAs(Yii::app()->basePath.'../../uploads/contents/'.$fileName);
+                                $uploadfileName = "{$uploadFile}";
+                                $uploadFile->saveAs(Yii::app()->basePath.'../../uploads/contents/'.$uploadfileName);
+                                $model->file_path=('uploads/contents/');
                                 }
                         if($model->file_category_id == 3)     
                             if(isset($uploadFile))
                                 {
                                 $uploadFile->saveAs(Yii::app()->basePath.'../../uploads/abstracts/'.$fileName);
+                                $model->file_path=('uploads/abstracts/');
                                 }
+                            $model->filename=$withoutExt;
+                            $model->filename_sys = $fileName; 
+                            $model->file_type=$uploadFile->getType();
+                            $model->file_size=$uploadFile->getSize();
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
