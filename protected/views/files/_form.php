@@ -36,7 +36,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'filename_sys'); ?>
-		<?php echo $form->fileField($model, 'filename_sys'); ?>
+		<?php echo CHtml::activeFileField($model, 'filename_sys'); ?>
 		<?php echo $form->error($model,'filename_sys'); ?>
         </div>
         
@@ -47,6 +47,7 @@
                 <!-- File attributes -->
                 <?php echo $form->hiddenField($model,'filename'); ?>
 		<?php echo $form->hiddenField($model,'file_type'); ?>
+                <?php echo $form->error($model,'file_type'); ?>
 		<?php echo $form->hiddenField($model,'file_size'); ?>
 		<?php echo $form->hiddenField($model,'file_path'); ?>
 		<?php echo $form->hiddenField($model,'create_date'); ?>

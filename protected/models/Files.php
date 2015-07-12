@@ -15,6 +15,65 @@
  * @property string $create_date
  * @property string $modification_date
  */
+
+/**
+ * CompositeUniqueKeyValidator class file.
+ */
+class CompositeUniqueKeyValidatorFiles extends CValidator {
+    /**
+     * @var string comma separated columns that are unique key
+     */
+    public $keyColumns;
+
+    public $errorMessage = '"{columns_labels}" already exists';
+
+    /**
+     * @var boolean whether the error message should be added to all of the columns
+     */
+    public $addErrorToAllColumns = false;
+
+    /**
+     * @param CModel $object the object being validated
+     * @param string $attribute if there is an validation error then error message
+     * will be added to this property
+     */
+    protected function validateAttribute($object, $attribute) {
+        $class = get_class($object);
+        Yii::import($class);
+
+        $keyColumns = explode(',', $this->keyColumns);
+        if (count($keyColumns) == 1) {
+            throw new CException('CUniqueValidator should be used instead');
+        }
+        $columnsLabels = $object->attributeLabels();
+
+        $criteria = new CDbCriteria();
+        $keyColumnsLabels = array();
+        foreach ($keyColumns as &$column) {
+            $column = trim($column);
+            $criteria->compare($column, $object->$column);
+            $keyColumnsLabels[] = $columnsLabels[$column];
+        }
+        unset($column);
+        $criteria->limit = 1;
+
+        if ($class::model()->count($criteria)) {
+            $message = Yii::t('yii', $this->errorMessage, array(
+                '{columns_labels}' => join(', ', $keyColumnsLabels)
+            ));
+            if ($this->addErrorToAllColumns) {
+                foreach ($keyColumns as $column) {
+                    $this->addError($object, $column, $message);
+                }
+            }
+            else {
+                $this->addError($object, $attribute, $message);
+            }
+        }
+    }
+
+}
+
 class Files extends CActiveRecord
 {
 	/**
@@ -33,7 +92,7 @@ class Files extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('filename_sys, file_type', 'required'),
+			array('filename_sys, file_type, product_id', 'required'),
 			array('filename', 'length', 'max'=>80),
 			array('filename_sys', 'length', 'max'=>255),
 			array('file_type', 'length', 'max'=>30),
@@ -44,6 +103,7 @@ class Files extends CActiveRecord
                         array('product_id', 'numerical', 'integerOnly'=>true),
                         array('file_category_id', 'numerical', 'integerOnly'=>true),
                         array('filename_sys', 'file', 'types'=>'jpeg, jpg, gif, png, txt, zip', 'safe' => false),
+                        array('product_id', 'CompositeUniqueKeyValidatorFiles', 'keyColumns' => 'filename_sys, product_id', 'on' => 'insert'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, filename, filename_sys, file_type, file_size, file_path, create_date, modification_date', 'safe', 'on'=>'search'),

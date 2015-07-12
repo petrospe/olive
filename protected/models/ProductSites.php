@@ -67,7 +67,6 @@ class CompositeUniqueKeyValidator extends CValidator {
 
 }
 
-
 class ProductSites extends CActiveRecord
 {
 	/**

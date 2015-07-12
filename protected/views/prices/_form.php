@@ -166,7 +166,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'ShowFrontPage'); ?>
-		<?php echo $form->textField($model,'ShowFrontPage'); ?>
+		<?php echo $form->checkbox($model,'ShowFrontPage'); ?>
 		<?php echo $form->error($model,'ShowFrontPage'); ?>
 	</div>
 

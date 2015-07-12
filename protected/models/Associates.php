@@ -10,6 +10,65 @@
  * @property string $last_name
  * @property string $last_name_en
  */
+
+/**
+ * CompositeUniqueKeyValidator class file.
+ */
+class CompositeUniqueKeyValidatorAssociates extends CValidator {
+    /**
+     * @var string comma separated columns that are unique key
+     */
+    public $keyColumns;
+
+    public $errorMessage = '"{columns_labels}" already exists';
+
+    /**
+     * @var boolean whether the error message should be added to all of the columns
+     */
+    public $addErrorToAllColumns = false;
+
+    /**
+     * @param CModel $object the object being validated
+     * @param string $attribute if there is an validation error then error message
+     * will be added to this property
+     */
+    protected function validateAttribute($object, $attribute) {
+        $class = get_class($object);
+        Yii::import($class);
+
+        $keyColumns = explode(',', $this->keyColumns);
+        if (count($keyColumns) == 1) {
+            throw new CException('CUniqueValidator should be used instead');
+        }
+        $columnsLabels = $object->attributeLabels();
+
+        $criteria = new CDbCriteria();
+        $keyColumnsLabels = array();
+        foreach ($keyColumns as &$column) {
+            $column = trim($column);
+            $criteria->compare($column, $object->$column);
+            $keyColumnsLabels[] = $columnsLabels[$column];
+        }
+        unset($column);
+        $criteria->limit = 1;
+
+        if ($class::model()->count($criteria)) {
+            $message = Yii::t('yii', $this->errorMessage, array(
+                '{columns_labels}' => join(', ', $keyColumnsLabels)
+            ));
+            if ($this->addErrorToAllColumns) {
+                foreach ($keyColumns as $column) {
+                    $this->addError($object, $column, $message);
+                }
+            }
+            else {
+                $this->addError($object, $attribute, $message);
+            }
+        }
+    }
+
+}
+
 class Associates extends CActiveRecord
 {
 	/**
@@ -32,6 +91,7 @@ class Associates extends CActiveRecord
 			array('id', 'numerical', 'integerOnly'=>true),
 			array('first_name, first_name_en', 'length', 'max'=>30),
 			array('last_name, last_name_en, title', 'length', 'max'=>100),
+                        array('last_name', 'CompositeUniqueKeyValidatorAssociates', 'keyColumns' => 'first_name, last_name'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, first_name, first_name_en, last_name, last_name_en, title', 'safe', 'on'=>'search'),

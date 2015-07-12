@@ -8,6 +8,65 @@
  * @property integer $product_id
  * @property integer $category_id
  */
+
+/**
+ * CompositeUniqueKeyValidator class file.
+ */
+class CompositeUniqueKeyValidatorProdCat extends CValidator {
+    /**
+     * @var string comma separated columns that are unique key
+     */
+    public $keyColumns;
+
+    public $errorMessage = '"{columns_labels}" already exists';
+
+    /**
+     * @var boolean whether the error message should be added to all of the columns
+     */
+    public $addErrorToAllColumns = false;
+
+    /**
+     * @param CModel $object the object being validated
+     * @param string $attribute if there is an validation error then error message
+     * will be added to this property
+     */
+    protected function validateAttribute($object, $attribute) {
+        $class = get_class($object);
+        Yii::import($class);
+
+        $keyColumns = explode(',', $this->keyColumns);
+        if (count($keyColumns) == 1) {
+            throw new CException('CUniqueValidator should be used instead');
+        }
+        $columnsLabels = $object->attributeLabels();
+
+        $criteria = new CDbCriteria();
+        $keyColumnsLabels = array();
+        foreach ($keyColumns as &$column) {
+            $column = trim($column);
+            $criteria->compare($column, $object->$column);
+            $keyColumnsLabels[] = $columnsLabels[$column];
+        }
+        unset($column);
+        $criteria->limit = 1;
+
+        if ($class::model()->count($criteria)) {
+            $message = Yii::t('yii', $this->errorMessage, array(
+                '{columns_labels}' => join(', ', $keyColumnsLabels)
+            ));
+            if ($this->addErrorToAllColumns) {
+                foreach ($keyColumns as $column) {
+                    $this->addError($object, $column, $message);
+                }
+            }
+            else {
+                $this->addError($object, $attribute, $message);
+            }
+        }
+    }
+
+}
+
 class ProductCategories extends CActiveRecord
 {
 	/**
@@ -28,6 +87,7 @@ class ProductCategories extends CActiveRecord
 		return array(
 			array('product_id, category_id', 'required'),
 			array('product_id, category_id', 'numerical', 'integerOnly'=>true),
+                        array('product_id', 'CompositeUniqueKeyValidatorProdCat', 'keyColumns' => 'category_id, product_id'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, product_id, category_id', 'safe', 'on'=>'search'),

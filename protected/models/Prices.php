@@ -55,7 +55,8 @@ class Prices extends CActiveRecord
 			array('discountTitle, discountTitle_en, discountCode, discountCode_en, discountLabel, discountLabel_en', 'length', 'max'=>255),
 			//array('discountExpiration', 'safe'),
                         array('discountExpiration', 'type', 'type' => 'date', 'dateFormat' => 'yyyy-MM-dd'),
-			// The following rule is used by search().
+			array('discountExpiration', 'default', 'setOnEmpty' => true, 'value' => null),
+                        // The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, product_id, individuals, companies, initialind, initialcom, NoDiscountInd, NoDiscountCom, lawyers, practicingLawyers, laywerCompanies, NoDiscountLCom, newLawyers, NoDiscountNLaw, students, accountants, practicingAccountants, discountExpiration, discountTitle, discountTitle_en, discountCode, discountCode_en, discountPercentage, ShowFrontPage, discountLabel, discountLabel_en', 'safe', 'on'=>'search'),
 		);
@@ -83,16 +84,16 @@ class Prices extends CActiveRecord
 			'product_id' => 'Product',
 			'individuals' => 'Individuals',
 			'companies' => 'Companies',
-			'initialind' => 'Initialind',
-			'initialcom' => 'Initialcom',
-			'NoDiscountInd' => 'No Discount Ind',
-			'NoDiscountCom' => 'No Discount Com',
+			'initialind' => 'Initial Price Individuals',
+			'initialcom' => 'Initial Price Companies',
+			'NoDiscountInd' => 'Discount rate Individuals',
+			'NoDiscountCom' => 'Discount rate Companies',
 			'lawyers' => 'Lawyers',
 			'practicingLawyers' => 'Practicing Lawyers',
 			'laywerCompanies' => 'Laywer Companies',
-			'NoDiscountLCom' => 'No Discount Lcom',
+			'NoDiscountLCom' => 'Discount rate Laywer Companies',
 			'newLawyers' => 'New Lawyers',
-			'NoDiscountNLaw' => 'No Discount Nlaw',
+			'NoDiscountNLaw' => 'Discount rate New Lawyers',
 			'students' => 'Students',
 			'accountants' => 'Accountants',
 			'practicingAccountants' => 'Practicing Accountants',
@@ -169,10 +170,12 @@ class Prices extends CActiveRecord
 		return parent::model($className);
 	}
 
+        /*
         public function beforeSave() {
             if ($this->isNewRecord)
                 $this->discountExpiration = new CDbExpression('NOW()');
 
             return parent::beforeSave();
         }
+         */
 }

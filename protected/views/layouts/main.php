@@ -55,6 +55,8 @@
                                             'url'=>array('/productypes')),
                                 array('label'=>'Prices',
                                             'url'=>array('/prices')),
+                                array('label'=>'Files',
+                                            'url'=>array('/files')),
                                     )
                                     ),
                         array('label'=>'Publications',
