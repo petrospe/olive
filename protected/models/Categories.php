@@ -35,6 +35,7 @@ class Categories extends CActiveRecord
 			array('site_id, productype_id, title, title_en, titleSEO, ordering', 'required'),
 			array('id, site_id, productype_id, ordering, active', 'numerical', 'integerOnly'=>true),
 			array('title, title_en, titleSEO', 'length', 'max'=>60),
+                        array('parent_id', 'default', 'setOnEmpty' => true, 'value' => null),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, site_id, productype_id, title, title_en, titleSEO, ordering, active', 'safe', 'on'=>'search'),
@@ -50,6 +51,7 @@ class Categories extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
                     'Childs' => array(self::HAS_MANY, 'Categories', 'parent_id'),
+                    'Parent' => array(self::BELONGS_TO, 'Categories', 'parent_id'),
 		);
 	}
 
@@ -124,5 +126,11 @@ class Categories extends CActiveRecord
             $list = CHtml::listData($model, 'id', 'title');
                 
             return $list;
+        }
+        
+        function getFullCategory()
+        {
+            $parentname='parent_id';
+            return $this->$parentname.' - '.$this->title;
         }
 }

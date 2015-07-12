@@ -22,6 +22,7 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
+                'Parent.title',
 		'site_id',
 		'productype_id',
 		'title',
