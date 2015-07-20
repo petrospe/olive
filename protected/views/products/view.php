@@ -117,7 +117,7 @@ if ($model->productype_id==1 || $model->productype_id==2 || $model->productype_i
                 'summaryText'=>'<h1>Manage Categories #</h1>',
                 'dataProvider'=>$productCategoriesDataProvider,
                 'columns'=>array(
-                        'category.title',
+                        'category.TitleWithParent',
                         /*array(
                                     'name'=>'category_id',
                                     'type'=>'raw', 'value'=>'Categories::model()->findByPk($data->category_id)->title',
