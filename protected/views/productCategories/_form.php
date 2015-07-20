@@ -26,7 +26,7 @@
                 $categories = Categories::model()->findAll();
 
                 // format models resulting using listData     
-                $categories_list = CHtml::listData($categories, 'id', 'FullCategory');
+                $categories_list = CHtml::listData($categories, 'id', 'TitleWithParent');
         ?>
 
 	<div class="row">

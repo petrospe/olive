@@ -127,10 +127,9 @@ class Categories extends CActiveRecord
                 
             return $list;
         }
-        
-        function getFullCategory()
+               
+        function getTitleWithParent()
         {
-            $parentname='parent_id';
-            return $this->$parentname.' - '.$this->title;
+            return ( $this->Parent !== null ? $this->Parent->title.' - ' : '' ).$this->title;
         }
 }
