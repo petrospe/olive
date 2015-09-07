@@ -52,21 +52,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'image'); ?>
-		<?php echo $form->textField($model,'image',array('size'=>50,'maxlength'=>50)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'abstract'); ?>
-		<?php echo $form->textField($model,'abstract',array('size'=>50,'maxlength'=>50)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'content'); ?>
-		<?php echo $form->textArea($model,'content',array('rows'=>6, 'cols'=>50)); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'topSellers'); ?>
 		<?php echo $form->textField($model,'topSellers'); ?>
 	</div>

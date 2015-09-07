@@ -3,8 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Library/WebServer/Documents/olive/protected/models/Files.php</file>
-            <file>file:/Library/WebServer/Documents/olive/protected/controllers/FilesController.php</file>
+            <file>file:/var/www/olive/protected/models/Categories.php</file>
         </group>
     </open-files>
 </project-private>
