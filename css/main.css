@@ -66,7 +66,6 @@ body
 #mainmenu ul li
 {
 	display: block;
-        //height: 28px;
         float: left;
         overflow: visible;
         position: relative;

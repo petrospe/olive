@@ -5469,3 +5469,39 @@ Stack trace:
 REQUEST_URI=/olive/index.php?r=publications/admin
 HTTP_REFERER=http://localhost/olive/index.php?r=publications/index
 ---
+2015/09/08 18:08:23 [error] [php] date(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone 'UTC' for now, but please set date.timezone to select your timezone. (/Library/WebServer/Documents/olive/protected/views/layouts/main.php:112)
+Stack trace:
+#0 /Library/WebServer/yii-master/framework/web/CBaseController.php(95): PublicationsController->renderInternal()
+#1 /Library/WebServer/yii-master/framework/web/widgets/CContentDecorator.php(76): PublicationsController->renderFile()
+#2 /Library/WebServer/yii-master/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate()
+#3 /Library/WebServer/yii-master/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput()
+#4 /Library/WebServer/yii-master/framework/web/CBaseController.php(214): CContentDecorator->run()
+#5 /Library/WebServer/yii-master/framework/web/CBaseController.php(308): PublicationsController->endWidget()
+#6 /Library/WebServer/Documents/olive/protected/views/layouts/column2.php(22): PublicationsController->endContent()
+#7 /Library/WebServer/yii-master/framework/web/CBaseController.php(126): require()
+#8 /Library/WebServer/yii-master/framework/web/CBaseController.php(95): PublicationsController->renderInternal()
+#9 /Library/WebServer/yii-master/framework/web/CController.php(784): PublicationsController->renderFile()
+#10 /Library/WebServer/Documents/olive/protected/controllers/PublicationsController.php(143): PublicationsController->render()
+#11 /Library/WebServer/yii-master/framework/web/actions/CInlineAction.php(49): PublicationsController->actionAdmin()
+#12 /Library/WebServer/yii-master/framework/web/CController.php(308): CInlineAction->runWithParams()
+#13 /Library/WebServer/yii-master/framework/web/filters/CFilterChain.php(133): PublicationsController->runAction()
+#14 /Library/WebServer/yii-master/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#15 /Library/WebServer/yii-master/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#16 /Library/WebServer/yii-master/framework/web/filters/CInlineFilter.php(58): PublicationsController->filterAccessControl()
+#17 /Library/WebServer/yii-master/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#18 /Library/WebServer/yii-master/framework/web/CController.php(291): CFilterChain->run()
+#19 /Library/WebServer/yii-master/framework/web/CController.php(265): PublicationsController->runActionWithFilters()
+#20 /Library/WebServer/yii-master/framework/web/CWebApplication.php(282): PublicationsController->run()
+#21 /Library/WebServer/yii-master/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#22 /Library/WebServer/yii-master/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#23 /Library/WebServer/Documents/olive/index.php(13): CWebApplication->run()
+REQUEST_URI=/olive/index.php?r=publications/admin
+in /Library/WebServer/Documents/olive/protected/views/layouts/main.php (112)
+in /Library/WebServer/Documents/olive/protected/views/layouts/column2.php (22)
+in /Library/WebServer/Documents/olive/protected/controllers/PublicationsController.php (143)
+2015/09/27 21:57:09 [warning] [application] Failed to set unsafe attribute "filename_sys" of "Files".
+in /Library/WebServer/Documents/olive/protected/controllers/FilesController.php (72)
+in /Library/WebServer/Documents/olive/index.php (13)
+2015/11/12 00:15:29 [warning] [application] Failed to set unsafe attribute "filename_sys" of "Files".
+in /Library/WebServer/Documents/olive/protected/controllers/FilesController.php (72)
+in /Library/WebServer/Documents/olive/index.php (13)
