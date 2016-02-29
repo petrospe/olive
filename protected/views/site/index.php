@@ -6,15 +6,18 @@ $this->pageTitle=Yii::app()->name;
 
 <h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
 
-<p>Congratulations! You have successfully created your Yii application.</p>
+<p>Backend content management system. Use this framework for add/remove or modify company items.</p>
 
-<p>You may change the content of this page by modifying the following two files:</p>
 <ul>
-	<li>View file: <code><?php echo __FILE__; ?></code></li>
-	<li>Layout file: <code><?php echo $this->getLayoutFile('main'); ?></code></li>
+	<li>Begin adding new books, magazines, seminars from product section. Modify inserted products if it needs.</li>
+	<li>Add the publishers or seminar editors in accosiates section. Add new attributes if it needs.</li>
+	<li>Add books and magazines in publications. Next you can add the publishers, prices, etc.</li>
+	<li>In files section upload the covers for books or magazines</li>
+	<li>Add seminars in seminars section.</li>
+	<li>In articles section you can add the events.</li>
 </ul>
 
 <p>For more details on how to further develop this application, please read
 the <a href="http://www.yiiframework.com/doc/">documentation</a>.
-Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
-should you have any questions.</p>
+Feel free to ask me at <a href="mailto:info@petrospe.org">info@petrospe.org</a>,
+if you should have any questions.</p>
