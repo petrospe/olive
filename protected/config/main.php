@@ -55,10 +55,10 @@ return array(
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=YJFjnfh0',
+			'connectionString' => 'mysql:host='.getEnvVariable('DB_HOST').';dbname='.getEnvVariable('DB_NAME'),
 			'emulatePrepare' => true,
-			'username' => 'U4pQS8Sh',
-			'password' => 'X838Q3pU',
+			'username' => getEnvVariable('DB_USER'),
+			'password' => getEnvVariable('DB_PASSWORD'),
 			'charset' => 'utf8'
 		),
 		
